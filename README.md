@@ -1,24 +1,26 @@
-# README
+# 居酒屋Waiting
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+居酒屋のレビューが投稿でき、尚且つ空席情報が一目で分かるレビューサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+お酒が好きで居酒屋で飲む機会が多くあったのですが、居酒屋に行くと満席であったり待っているお客さんがいた為、空いている居酒屋を歩いて探していました。空いている居酒屋が一目で分かるサービスがあれば時間の短縮やいろんなお店を知ることができると考えこのテーマにしました。
 
-* Ruby version
+### ターゲットユーザ
+居酒屋を探している人
 
-* System dependencies
+### 主な利用シーン
+空いている居酒屋を探しているとき
 
-* Configuration
+## 設計書
 
-* Database creation
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
