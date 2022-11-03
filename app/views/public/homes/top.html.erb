@@ -1,0 +1,29 @@
+<div class="row">
+  <h2>おすすめの居酒屋</h2>
+</div>
+<div class="row mt-4">
+  <div class="col-12 text-center mb-4">
+  <%= image_tag '居酒屋', size: "200x200" %>
+  <%= image_tag '居酒屋１', size: "200x200" %>
+  <%= image_tag '居酒屋２', size: "200x200" %>
+  <%= image_tag '居酒屋', size: "200x200" %>
+  </div>
+  <h2>ジャンル一覧</h2>
+  <table class="text-center mx-auto table table-hover">
+    <tbody class="border">
+      <%# Genre.all.each do |genre| %>
+        <tr>
+          <th>
+            <div>
+              <%#= link_to genre_path(genre.id), class: "text-black text-decoration-none" do %>
+              <%#= genre.name %>
+              <%# end %>
+              <p>焼肉</p>
+              <p>鉄板焼き</p>
+            </div>
+          </th>
+        </tr>
+      <%# end %>
+    </tbody>
+  </table>
+</div>

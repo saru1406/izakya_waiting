@@ -6,11 +6,14 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
+  <%= render "layouts/header" %>
+  <div class="container">
     <%= yield %>
-  </body>
+  </div>  
+    <footer class="bg-header border-top p-1 bg-dark">
+      <p class="my-3 mx-auto w-auto text-center text-light">- 居酒屋Waiting -</p>
+    </footer>
 </html>

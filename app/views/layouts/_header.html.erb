@@ -1,0 +1,28 @@
+<header class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+  <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </div>
+  <%= link_to "LOGO",root_path, class: "btn btn-outline-light ms-1" %>
+  <div class="collapse navbar-collapse justify-content-end">
+    <div class="button_area m-3 text-light">
+      <% if !store_signed_in? %>
+        <% if customer_signed_in? %>
+        <div class="d-inline-block ">
+          <p>ようこそ、<%= current_customer.name %>さん！</p>
+        </div>
+        <%= link_to "マイページ", "#", class: "btn btn-outline-light ms-1" %>
+        <%= link_to "居酒屋一覧", "#", class: "btn btn-outline-light ms-1" %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
+        <% else %>
+        <%= link_to "ゲストログイン","#", class: "btn btn-outline-light ms-1" %>
+        <%= link_to "新規登録",new_customer_registration_path, class: "btn btn-outline-light ms-1" %>
+        <%= link_to "ログイン",new_customer_session_path, class: "btn btn-outline-light ms-1" %>
+        <% end %>
+      <% end %>
+      <% if store_signed_in? && !customer_signed_in? %>
+      <%= link_to "ログアウト", destroy_store_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
+      <% end %>
+    </div>
+  </div>
+
+</header>
