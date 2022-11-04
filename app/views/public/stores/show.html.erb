@@ -43,7 +43,7 @@
     <div class="col-8 pb-3 mt-3 mx-auto">
       <table class="border border-warning">
         <tr>
-          <th style="width: 1%"><%= review.title %></th>
+          <th style="width: 1%"><%= link_to review.title, store_review_path(review.id) %></th>
         </tr>
         <tr>
           <td style="width: 1%"><%=safe_join(review.body.split("\n"),tag(:br))%></td>
