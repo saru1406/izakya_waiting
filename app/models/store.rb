@@ -5,4 +5,6 @@ class Store < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_one_attached :image
+         
+         has_many :reviews, dependent: :destroy
 end

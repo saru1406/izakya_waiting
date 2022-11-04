@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'stores/index'
+    get 'stores/show'
+  end
+  namespace :public do
+    get 'reviews/show'
+  end
+  namespace :public_store do
+    get 'stores/index'
+    get 'stores/show'
+  end
  # 顧客用
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -17,6 +28,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 root to: 'public/homes#top'
+
+scope module: :public do
+resources :stores, only: [:index, :show]do
+  resources :reviews, only: [:show, :create]
+end
+end
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-4">
+
+  </div>
+  <div class="col-8">
+    <h2 class="col-7 bg-light text-center"><%= @store.name %>詳細</h2>
+    <div class="pb-4">
+      <table class="table-sm table-warning border">
+        <tr>
+          <th><%= image_tag '居酒屋', size: "250x250" %></th>
+          <th class="text-right">
+            店舗名:<br>
+            予算:<br>
+            住所:<br>
+            電話番号:<br>
+            空席情報:<br>
+            営業時間:<br>
+            定休日:<br>
+            禁煙・喫煙:<br>
+            チャージ料:<br>
+          </th>
+          <td></td>
+          <td style="width: 43%">
+            <%= @store.name %><br>
+            ￥<%= @store.budget_min %>円~￥<%= @store.budget_max %>円<br>
+            <%= @store.address %><br>
+            <%= @store.telephone_number %><br>
+            <%= @store.seat_status %><br>
+            <%= @store.business_hours %><br>
+            <%= @store.regular_holiday %><br>
+            <%= @store.smoke_status %><br>
+            <%= @store.service_charge %>円<br>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <h3 class="col-3 bg-light text-center">レビュー</h3>
+  <% @reviews.each do |review| %>
+    <div class="col-8 pb-3 mt-3 mx-auto">
+      <table class="border border-warning">
+        <tr>
+          <th style="width: 1%"><%= review.title %></th>
+        </tr>
+        <tr>
+          <td style="width: 1%"><%=safe_join(review.body.split("\n"),tag(:br))%></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <h3 class="col-3 bg-light text-center mt-5">レビューを投稿する</h3>
+  <div class="col-12 ">
+    <%= form_with model: [@store,@review] do |f| %>
+      <table class="mx-auto text-right mt-3 mb-5">
+        <tr>
+          <td><%= f.label :"タイトル" %></td>
+          <td><%= f.text_field :title, size: "50" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :"本文" %></td>
+          <td><%= f.text_area :body, size: "52x5" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
