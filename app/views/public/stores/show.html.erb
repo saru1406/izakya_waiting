@@ -39,25 +39,62 @@
 <div class="row">
   <div class="col-2"></div>
   <h3 class="col-3 bg-light text-center">レビュー</h3>
-  <% @reviews.each do |review| %>
-    <div class="col-8 pb-3 mt-3 mx-auto">
-      <table class="border border-warning">
-        <tr>
-          <th style="width: 1%"><%= link_to review.title, store_review_path(review.id) %></th>
-        </tr>
-        <tr>
-          <td style="width: 1%"><%=safe_join(review.body.split("\n"),tag(:br))%></td>
-        </tr>
-      </table>
-    </div>
-  <% end %>
+    <div class="col-8 mx-auto">
+      <% @reviews.each do |review| %>
+        <table class="border border-warning mt-4">
+          <tr>
+            <td><!-- 評価 -->
+              <div id="star-rate<%= review.id%>"></div>
+            </td>
+            <!-- 評価javascript -->
+            <script>
+              $('#star-rate<%= review.id%>').empty();
+              $('#star-rate<%= review.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf  : '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= review.star %>,
+              });
+            </script>
+          </tr>
+          <tr>
+            <th style="width: 1%"><%= link_to review.title, store_review_path(@store,review.id) %></th>
+          </tr>
+          <tr>
+            <td style="width: 1%"><%=safe_join(review.body.split("\n"),tag(:br))%></td>
+          </tr>
+        </table>
+      <% end %>
+  </div>
 </div>
 <div class="row">
   <div class="col-2"></div>
   <h3 class="col-3 bg-light text-center mt-5">レビューを投稿する</h3>
-  <div class="col-12 ">
+  <div class="col-12">
     <%= form_with model: [@store,@review] do |f| %>
       <table class="mx-auto text-right mt-3 mb-5">
+        <tr>
+          <td><%= f.label :star,'評価' %></td>
+          <td>  <!-- 評価 -->
+            <div class="text-center" id="star">
+            <%= f.hidden_field :star, id: :review_star %></div>
+          </td>
+            <!-- 評価javascript -->
+            <script>
+            $('#star').empty();
+            $('#star').raty({
+            size     : 36,
+            starOff  :  '<%= asset_path('star-off.png') %>',
+            starOn   : '<%= asset_path('star-on.png') %>',
+            starHalf : '<%= asset_path('star-half.png') %>',
+            scoreName: 'review[star]',
+            half: true,
+            });
+          </script>
+        </tr>
         <tr>
           <td><%= f.label :"タイトル" %></td>
           <td><%= f.text_field :title, size: "50" %></td>

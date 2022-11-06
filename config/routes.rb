@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :public do
+    get 'review_comments/index'
+  end
+  namespace :public do
     get 'stores/index'
     get 'stores/show'
   end
@@ -30,9 +33,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 root to: 'public/homes#top'
 
 scope module: :public do
-resources :stores, only: [:index, :show]do
-  resources :reviews, only: [:show, :create]
-end
+  resources :stores, only: [:index, :show]do
+    resources :reviews, only: [:show, :create, :destroy]do
+      resources :review_comments, only: [:create, :destroy]
+    end    
+  end
 end
 
 
