@@ -14,11 +14,30 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def index
+    @customer = current_customer
+    @reviews = @customer.reviews.all
+  end
+
   def show
     @store = Store.find(params[:store_id])
     @review = Review.find(params[:id])
     @review_comments = @review.review_comments.all
     @review_comment =ReviewComment.new
+  end
+
+  def edit
+    @store = Store.find(params[:store_id])
+    @review = Review.find(params[:id])
+    @review_comments = @review.review_comments.all
+    @review_comment =ReviewComment.new
+  end
+
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    store = Store.find(params[:store_id])
+    redirect_to store_path(store.id)
   end
 
   def review_params

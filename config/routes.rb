@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'review_comments/index'
-  end
-  namespace :public do
-    get 'stores/index'
-    get 'stores/show'
-  end
-  namespace :public do
-    get 'reviews/show'
-  end
-  namespace :public_store do
-    get 'stores/index'
-    get 'stores/show'
-  end
+
  # 顧客用
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -33,10 +20,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 root to: 'public/homes#top'
 
 scope module: :public do
+  get 'customers/my_page'=>'customers#show'
+  get 'customers/information/edit'=>'customers#edit'
+  patch 'customers/information'=>'customers#update'
+  delete 'customers/information'=>'customers#destroy'
+  resources :reviews, only: [:index]
   resources :stores, only: [:index, :show]do
-    resources :reviews, only: [:show, :create, :destroy]do
+    resources :reviews, only: [:show, :create, :destroy, :edit, :update]do
       resources :review_comments, only: [:create, :destroy]
-    end    
+    end
   end
 end
 

@@ -25,16 +25,18 @@
           <th style="width: 1%"><%= @review.title %></th>
         </tr>
         <tr>
-          <td style="width: 1%"><%=safe_join(@review.body.split("\n"),tag(:br))%></td>
+          <td style="width: 1%"><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
         </tr>
       </table>
+      <%= link_to '編集する', edit_store_review_path(@review.store_id,@review.id), class: 'btn btn-success mt-3' %>
+      <%= link_to '削除する', store_review_path(@review.store_id,@review.id), class: 'btn btn-danger mt-3', method: :delete %>
     </div>
 </div>
 <div class="row">
   <div class="col-2"></div>
   <h3 class="col-3 bg-light text-center">コメント</h3>
   <div class="col-8 mx-auto">
-    <table class="table  align-middle">
+    <table class="table table-hover">
       <% @review_comments.each do |review_comment| %>
       <tr>
         <td><%= review_comment.comment %></td>
