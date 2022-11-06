@@ -31,11 +31,15 @@ scope module: :public do
   delete 'customers/information'=>'customers#destroy'
   resources :reviews, only: [:index]
   resources :review_comments, only: [:index]
-  resources :stores, only: [:index, :show]do
-    resources :reviews, only: [:show, :create, :destroy, :edit, :update]do
+  resources :stores, only: [:index, :show] do
+    resources :reviews, only: [:show, :create, :destroy, :edit, :update] do
       resources :review_comments, only: [:create, :destroy]
     end
   end
+end
+
+namespace :public_store do
+  get 'stores/my_page'=>'stores#show'
 end
 
 
