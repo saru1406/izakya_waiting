@@ -6,4 +6,12 @@ class Customer < ApplicationRecord
 
          has_many :reviews, dependent: :destroy
          has_many :review_comments, dependent: :destroy
+
+
+         def self.guest
+          find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
+          customer.password = SecureRandom.urlsafe_base64
+          customer.name = "guestuser"
+          end
+         end
 end

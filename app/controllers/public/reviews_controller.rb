@@ -32,6 +32,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def show
+    @customer = current_customer
     @store = Store.find(params[:store_id])
     @review = Review.find(params[:id])
     @review_comments = @review.review_comments.all

@@ -32,7 +32,7 @@
       <%= link_to '削除する', store_review_path(@review.store_id,@review.id), class: 'btn btn-danger mt-3', method: :delete %>
     </div>
 </div>
-<div class="row">
+<div class="row pb-5">
   <div class="col-2"></div>
   <h3 class="col-3 bg-light text-center">コメント</h3>
   <div class="col-8 mx-auto">
@@ -46,9 +46,10 @@
     </table>
   </div>
 </div>
-<div class="row">
+<div class="row pb-5">
+  <% if @customer.name != "guestuser" %>
   <div class="col-2"></div>
-  <h3 class="col-3 bg-light text-center mt-5">レビューを投稿する</h3>
+  <h3 class="col-3 bg-light text-center mt-5">コメントを投稿する</h3>
   <div class="col-12">
     <%= form_with model: [@store,@review,@review_comment] do |f| %>
       <table class="mx-auto text-right mt-3 mb-5">
@@ -63,4 +64,5 @@
       </table>
     <% end %>
   </div>
+  <% end %>
 </div>

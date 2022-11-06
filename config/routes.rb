@@ -17,6 +17,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+#ゲスト用
+devise_scope :customer do
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
 root to: 'public/homes#top'
 
 scope module: :public do

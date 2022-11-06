@@ -22,6 +22,11 @@ class Public::ReviewCommentsController < ApplicationController
     redirect_to store_review_path(store.id,review.id)
   end
 
+  def index
+    @customer = current_customer
+    @review_comments = @customer.review_comments.all
+  end
+
   def review_comment_params
     params.require(:review_comment).permit(:comment)
   end

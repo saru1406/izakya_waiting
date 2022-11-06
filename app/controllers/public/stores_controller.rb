@@ -8,5 +8,6 @@ class Public::StoresController < ApplicationController
     @store = Store.find(params[:id])
     @review = Review.new
     @reviews = @store.reviews.all
+    @customer = current_customer
   end
 end

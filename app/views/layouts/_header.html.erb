@@ -14,7 +14,7 @@
         <%= link_to "居酒屋一覧", stores_path, class: "btn btn-outline-light ms-1" %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
         <% else %>
-        <%= link_to "ゲストログイン","#", class: "btn btn-outline-light ms-1" %>
+        <%= link_to "ゲストログイン",public_guest_sign_in_path, method: :post, class: "btn btn-outline-light ms-1" %>
         <%= link_to "新規登録",new_customer_registration_path, class: "btn btn-outline-light ms-1" %>
         <%= link_to "ログイン",new_customer_session_path, class: "btn btn-outline-light ms-1" %>
         <% end %>

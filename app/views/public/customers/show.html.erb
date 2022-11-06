@@ -8,7 +8,9 @@
       <table class="table table-borderless align-middle text-nowrap">
         <tr>
           <td><h3 class="m-0">登録情報</h3></td>
+          <% if @customer.name != "guestuser" %>
           <td><%= link_to '編集する', customers_information_edit_path, class:"btn btn-success btn-block" %></td>
+          <% end %>
         </tr>
       </table>
     </div>
@@ -23,6 +25,7 @@
       </tr>
     </table>
     <div class = "col-6">
+      <% if @customer.name != "guestuser" %>
       <table class="table table-borderless">
         <tr>
           <td>レビュー投稿</td>
@@ -33,6 +36,7 @@
           <td><%= link_to '一覧を見る', review_comments_path , class:"btn btn-primary btn-block" %></td>
         </tr>
       </table>
+      <% end %>
     </div>
   </div>
 </div>
