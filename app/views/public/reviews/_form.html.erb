@@ -1,0 +1,37 @@
+<div class="col-12">
+  <%= form_with model: [store,review] do |f| %>
+      <table class="mx-auto text-right mt-3 mb-5">
+        <tr>
+          <td><%= f.label :star,'評価' %></td>
+          <td>  <!-- 評価 -->
+            <div class="text-center" id="star">
+            <%= f.hidden_field :star, id: :review_star %></div>
+          </td>
+            <!-- 評価javascript -->
+            <script>
+            $('#star').empty();
+            $('#star').raty({
+            size     : 36,
+            starOff  :  '<%= asset_path('star-off.png') %>',
+            starOn   : '<%= asset_path('star-on.png') %>',
+            starHalf : '<%= asset_path('star-half.png') %>',
+            scoreName: 'review[star]',
+            half: true,
+            });
+          </script>
+        </tr>
+        <tr>
+          <td><%= f.label :"タイトル" %></td>
+          <td><%= f.text_field :title, size: "50" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :"本文" %></td>
+          <td><%= f.text_area :body, size: "52x5" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>

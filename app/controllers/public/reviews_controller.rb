@@ -14,6 +14,18 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def update
+    review = Review.find(params[:id])
+    if review.update(review_params)
+      store = Store.find(params[:store_id])
+      redirect_to store_path(store.id)
+    else
+      @store = Store.find(params[:id])
+      @reviews = Review.all
+      render :"store/show"
+    end
+  end
+
   def index
     @customer = current_customer
     @reviews = @customer.reviews.all
@@ -29,8 +41,6 @@ class Public::ReviewsController < ApplicationController
   def edit
     @store = Store.find(params[:store_id])
     @review = Review.find(params[:id])
-    @review_comments = @review.review_comments.all
-    @review_comment =ReviewComment.new
   end
 
   def destroy

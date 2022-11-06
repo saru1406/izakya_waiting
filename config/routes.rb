@@ -25,6 +25,7 @@ scope module: :public do
   patch 'customers/information'=>'customers#update'
   delete 'customers/information'=>'customers#destroy'
   resources :reviews, only: [:index]
+  resources :review_comments, only: [:index]
   resources :stores, only: [:index, :show]do
     resources :reviews, only: [:show, :create, :destroy, :edit, :update]do
       resources :review_comments, only: [:create, :destroy]

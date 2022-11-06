@@ -4,23 +4,23 @@
     <div class="col-8 pb-3 mt-3 mx-auto">
       <table class="border border-warning">
         <tr>
-            <td><!-- 評価 -->
-              <div id="star-rate<%= @review.id%>"></div>
-            </td>
-            <!-- 評価javascript -->
-            <script>
-              $('#star-rate<%= @review.id%>').empty();
-              $('#star-rate<%= @review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf  : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= @review.star %>,
-              });
-            </script>
-          </tr>
+          <td><!-- 評価 -->
+            <div id="star-rate<%= @review.id%>"></div>
+          </td>
+          <!-- 評価javascript -->
+          <script>
+            $('#star-rate<%= @review.id%>').empty();
+            $('#star-rate<%= @review.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            starHalf  : '<%= asset_path('star-half.png') %>',
+            half      : true,
+            readOnly: true,
+            score: <%= @review.star %>,
+            });
+          </script>
+        </tr>
         <tr>
           <th style="width: 1%"><%= @review.title %></th>
         </tr>
