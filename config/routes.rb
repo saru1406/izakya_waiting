@@ -40,8 +40,16 @@ end
 
 namespace :public_store do
   get 'stores/my_page'=>'stores#show'
+  resources :stores, only: [:edit, :update]
 end
 
+namespace :admin do
+  resources :stores, only: [:index, :edit]
+  resources :customers, only: [:index, :edit]do
+    resources :reviews, only: [:index, :destroy]
+    resources :review_comments, only: [:index, :destroy]
+  end
+end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

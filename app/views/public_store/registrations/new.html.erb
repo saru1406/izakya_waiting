@@ -13,36 +13,36 @@
         <td><%= f.text_field :name, autofocus: true, placeholder: "店舗名" %></td>
       </tr>
       <tr>
-        <th><%= f.label :"電話番号" %></th>
-        <td><%= f.text_field :telephone_number %></td>
+        <th><%= f.label :"予算" %></th>
+        <td>￥<%= f.text_field :budget_min %>円 ～￥<%= f.text_field :budget_max %>円</td>
       </tr>
       <tr>
         <th><%= f.label :"住所" %></th>
         <td><%= f.text_field :address %></td>
       </tr>
       <tr>
-        <th><%= f.label :"予算" %></th>
-        <td>￥<%= f.text_field :budget_min %>円 ～￥<%= f.text_field :budget_max %>円</td>
+        <th><%= f.label :"電話番号" %></th>
+        <td><%= f.text_field :telephone_number %></td>
       </tr>
       <tr>
-        <th><%= f.label :"定休日" %></th>
-        <td><%= f.text_field :regular_holiday %></td>
+        <th><%= f.label :"空席情報" %></th>
+        <td><%= f.text_field :seat_status %></td>
       </tr>
       <tr>
         <th><%= f.label :"営業時間" %></th>
         <td><%= f.text_field :business_hours %></td>
       </tr>
       <tr>
+        <th><%= f.label :"定休日" %></th>
+        <td><%= f.text_field :regular_holiday %></td>
+      </tr>
+      <tr>
         <th><%= f.label :"禁煙・喫煙" %></th>
         <td><%= f.text_field :smoke_status %></td>
       </tr>
       <tr>
-        <th><%= f.label :"サービス料" %></th>
+        <th><%= f.label :"チャージ" %></th>
         <td><%= f.text_field :service_charge %>円</td>
-      </tr>
-      <tr>
-        <th><%= f.label :"空席情報" %></th>
-        <td><%= f.text_field :seat_status %></td>
       </tr>
       <tr>
         <th><%= f.label :"メールアドレス" %></th>
