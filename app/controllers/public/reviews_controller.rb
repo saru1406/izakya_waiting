@@ -51,6 +51,7 @@ class Public::ReviewsController < ApplicationController
     redirect_to store_path(store.id)
   end
 
+  private
   def review_params
     params.require(:review).permit(:title, :body, :star)
   end

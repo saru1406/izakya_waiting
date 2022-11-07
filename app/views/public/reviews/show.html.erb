@@ -46,8 +46,8 @@
     </table>
   </div>
 </div>
-<div class="row pb-5">
-  <% if @customer.name != "guestuser" %>
+<% if @customer.name != "guestuser" %>
+<div class="row">
   <div class="col-2"></div>
   <h3 class="col-3 bg-light text-center mt-5">コメントを投稿する</h3>
   <div class="col-12">
@@ -64,5 +64,5 @@
       </table>
     <% end %>
   </div>
-  <% end %>
 </div>
+<% end %>

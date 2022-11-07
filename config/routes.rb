@@ -44,11 +44,10 @@ namespace :public_store do
 end
 
 namespace :admin do
-  resources :stores, only: [:index, :edit]
-  resources :customers, only: [:index, :edit]do
-    resources :reviews, only: [:index, :destroy]
-    resources :review_comments, only: [:index, :destroy]
-  end
+  resources :stores, only: [:index,:show, :edit, :update]
+  resources :customers, only: [:index, :show, :edit, :update]
+  resources :reviews, only: [:index, :destroy]
+  resources :review_comments, only: [:index, :destroy]
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

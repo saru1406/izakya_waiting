@@ -27,6 +27,7 @@ class Public::ReviewCommentsController < ApplicationController
     @review_comments = @customer.review_comments.all
   end
 
+  private
   def review_comment_params
     params.require(:review_comment).permit(:comment)
   end

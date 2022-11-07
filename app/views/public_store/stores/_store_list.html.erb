@@ -1,0 +1,42 @@
+<table class="table table-bordered">
+      <tr>
+        <th class="bg-light">店舗名</th>
+        <td><%= @store.name %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">予算</th>
+        <td>￥<%= @store.budget_min %>円~￥<%= @store.budget_max %>円</td>
+      </tr>
+      <tr>
+        <th class="bg-light">住所</th>
+        <td><%= @store.address %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">電話番号</th>
+        <td><%= @store.telephone_number %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">空席情報</th>
+        <td><%= @store.seat_status %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">営業時間</th>
+        <td><%= @store.business_hours %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">定休日</th>
+        <td><%= @store.regular_holiday %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">禁煙・喫煙</th>
+        <td><%= @store.smoke_status %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">チャージ料</th>
+        <td><%= @store.service_charge %>円</td>
+      </tr>
+      <tr>
+        <th class="bg-light">メールアドレス</th>
+        <td><%= @store.email %></td>
+      </tr>
+    </table>

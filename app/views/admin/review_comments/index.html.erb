@@ -1,2 +1,21 @@
-<h1>Admin::ReviewComments#index</h1>
-<p>Find me in app/views/admin/review_comments/index.html.erb</p>
+<div class="row">
+  <h3 class="bg-light border px-3 mb-3 d-inline-block">コメント投稿一覧</h3>
+  <table class="table table-hover">
+    <thead class="thead thead-light">
+      <th class="col-2">コメントID</th>
+      <th class="col-1">投稿者</th>
+      <th>コメント</th>
+      <th class="col-1"></th>
+    </thead>
+    <tbody>
+      <% @review_comments.each do |review_comment| %>
+      <tr>
+        <td><%= review_comment.id %></td>
+        <td><%= link_to review_comment.customer.name, admin_customer_path(review_comment.customer.id) %></td>
+        <td><%= review_comment.comment %></td>
+        <td><%= link_to "削除", admin_review_comment_path(review_comment.id), class: "btn btn-danger", method: :delete %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

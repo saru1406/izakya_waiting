@@ -25,8 +25,10 @@
         <%= link_to "マイページ", public_store_stores_my_page_path(current_store), class: "btn btn-outline-light ms-1" %>
         <%= link_to "ログアウト", destroy_store_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
       <% elsif !store_signed_in? && admin_signed_in? %>
-        <%= link_to "会員一覧", "", class: "btn btn-outline-light ms-1" %>
-        <%= link_to "居酒屋一覧", "#", class: "btn btn-outline-light ms-1" %>
+        <%= link_to "レビュー一覧", admin_reviews_path, class: "btn btn-outline-light ms-1" %>
+        <%= link_to "コメント一覧", admin_review_comments_path, class: "btn btn-outline-light ms-1" %>
+        <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-light ms-1" %>
+        <%= link_to "居酒屋一覧", admin_stores_path, class: "btn btn-outline-light ms-1" %>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
       <% end %>
 
