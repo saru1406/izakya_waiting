@@ -4,6 +4,10 @@
         <td><%= @store.name %></td>
       </tr>
       <tr>
+        <th class="bg-light">画像</th>
+        <td><%= image_tag @store.get_image, size: "150x150" %></td>
+      </tr>
+      <tr>
         <th class="bg-light">予算</th>
         <td>￥<%= @store.budget_min %>円~￥<%= @store.budget_max %>円</td>
       </tr>
@@ -14,6 +18,14 @@
       <tr>
         <th class="bg-light">電話番号</th>
         <td><%= @store.telephone_number %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">タグ</th>
+        <td>
+          <% @store.tags.each do |tag| %>
+          <%= tag.name %>
+          <% end %>
+        </td>
       </tr>
       <tr>
         <th class="bg-light">空席情報</th>

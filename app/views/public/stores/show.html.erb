@@ -5,7 +5,7 @@
     <div class="pb-4">
       <table class="table-sm table-warning border">
         <tr>
-          <th><%= image_tag '居酒屋', size: "250x250" %></th>
+          <th><%= image_tag @store.get_image, size: "250x250" %></th>
           <th class="text-right">
             店舗名:<br>
             予算:<br>
@@ -41,7 +41,8 @@
       <% @reviews.each do |review| %>
         <table class="border border-warning mt-4">
           <tr>
-            <td><!-- 評価 -->
+            <td>
+              <!-- 評価 -->
               <div id="star-rate<%= review.id%>"></div>
             </td>
             <!-- 評価javascript -->
@@ -62,7 +63,18 @@
             <th style="width: 1%"><%= link_to review.title, store_review_path(@store,review.id) %></th>
           </tr>
           <tr>
-            <td style="width: 1%"><%=safe_join(review.body.split("\n"),tag(:br))%></td>
+            <!--コメントが200文字以上なら<もっと見る>を表示し、詳細リンク追加-->
+            <%if review.body.length > 200 %>
+            <td style="width: 1%">
+              <%=safe_join(review.body.truncate(200).split("\n"),tag(:br))%>
+              <%= link_to store_review_path(@store,review.id) do %>&lt;もっと見る&gt;<% end %>
+            </td>
+            <!--コメントが200文字以下なら全文表示-->
+            <% else %>
+            <td style="width: 1%">
+              <%=safe_join(review.body.split("\n"),tag(:br))%>
+            </td>
+            <% end %>
           </tr>
         </table>
       <% end %>

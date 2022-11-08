@@ -5,43 +5,61 @@
 <%= form_with model: @store, url: public_store_store_path, method: :patch do |f| %>
   <table class="table table-borderless text-nowrap">
     <tr>
-      <th><%= f.label :"店舗名" %></th>
+      <th>店舗名</th>
       <td><%= f.text_field :name, autofocus: true, placeholder: "店舗名" %></td>
     </tr>
     <tr>
-      <th><%= f.label :"予算" %></th>
-      <td>￥<%= f.text_field :budget_min %>円 ～￥<%= f.text_field :budget_max %>円</td>
+      <th>画像</th>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
     </tr>
     <tr>
-      <th><%= f.label :"住所" %></th>
+      <th>予算</th>
+      <td><%= f.text_field :budget_min %>円 ～<%= f.text_field :budget_max %>円</td>
+    </tr>
+    <tr>
+      <th>住所</th>
       <td><%= f.text_field :address %></td>
     </tr>
     <tr>
-      <th><%= f.label :"電話番号" %></th>
+      <th>電話番号(ハイフンなし)</th>
       <td><%= f.text_field :telephone_number %></td>
     </tr>
     <tr>
-      <th><%= f.label :"空席情報" %></th>
+      <th>タグ</th>
+      <td>
+        <!--登録済みのタグをチェックボックスで表示-->
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <div class='form-check'>
+            <%= tag.label class: 'form-check-label' do %>
+              <%= tag.check_box class: 'form-check-input' %>
+              <%= tag.text %>
+            <% end %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>空席情報</th>
       <td><%= f.text_field :seat_status %></td>
     </tr>
     <tr>
-      <th><%= f.label :"営業時間" %></th>
+      <th>営業時間</th>
       <td><%= f.text_field :business_hours %></td>
     </tr>
     <tr>
-      <th><%= f.label :"定休日" %></th>
+      <th>定休</th>
       <td><%= f.text_field :regular_holiday %></td>
     </tr>
     <tr>
-      <th><%= f.label :"禁煙・喫煙" %></th>
+      <th>禁煙・喫煙</th>
       <td><%= f.text_field :smoke_status %></td>
     </tr>
     <tr>
-      <th><%= f.label :"チャージ" %></th>
+      <th>チャージ</th>
       <td><%= f.text_field :service_charge %>円</td>
     </tr>
     <tr>
-      <th><%= f.label :"メールアドレス" %></th>
+      <th>メールアドレス></th>
       <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></td>
     </tr>
   </table>
