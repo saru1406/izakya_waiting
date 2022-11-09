@@ -16,5 +16,8 @@
   <div class='col-4'>
     <%= f.submit "編集内容を保存",class: 'btn btn-success' %>
   </div>
+  <div class='col-3'>
+    <%= link_to '強制退会',admin_customer_path, method: :delete, "data-confirm" => "本当に退会させますか？",class: 'btn btn-danger' %>
+  </div>
 </div>
 <% end %>

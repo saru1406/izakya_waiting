@@ -18,11 +18,11 @@
       </tr>
       <tr>
         <th>予算</th>
-        <td>￥<%= f.text_field :budget_min %>円 ～￥<%= f.text_field :budget_max %>円</td>
+        <td><%= f.text_field :budget_min %>円 ～<%= f.text_field :budget_max %>円</td>
       </tr>
       <tr>
         <th>住所</th>
-        <td><%= f.text_field :address %></td>
+        <td><%= f.text_field :address, class: 'w-100' %></td>
       </tr>
       <tr>
         <th>電話番号(ハイフンなし</th>
@@ -30,7 +30,7 @@
       </tr>
       <tr>
         <th>空席情報</th>
-        <td><%= f.text_field :seat_status %></td>
+        <td><%= f.select :seat_status, [["空きあり"], ["空きわずか"],["空き無し"]], include_blank: "選択して下さい" %></td>
       </tr>
       <tr>
         <th>営業時間</th>
@@ -42,7 +42,7 @@
       </tr>
       <tr>
         <th>禁煙・喫煙</th>
-        <td><%= f.text_field :smoke_status %></td>
+        <td><%= f.select :smoke_status, [["禁煙"], ["喫煙"]], include_blank: "選択して下さい" %></td>
       </tr>
       <tr>
         <th>チャージ</th>

@@ -22,8 +22,8 @@ class Public::CustomersController < ApplicationController
 
   def destroy
     customer = current_customer
-    customer.update(is_deleted: true)
-    reset_session
+    customer.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
     redirect_to root_path
   end
 

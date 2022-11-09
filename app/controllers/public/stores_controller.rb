@@ -3,6 +3,7 @@ class Public::StoresController < ApplicationController
   def index
     @stores = Store.all
     @tag = Tag.all
+    #サイドバーのタグ検索
     if params[:tag_ids]
       @stores = []
       params[:tag_ids].each do |key, value|
@@ -18,5 +19,11 @@ class Public::StoresController < ApplicationController
     @reviews = @store.reviews.all
     @customer = current_customer
     @tag = Tag.all
+  end
+
+  def search
+    @tag = Tag.all
+    @stores = Store.where('seat_status LIKE(?) and smoke_status LIKE(?)', "%#{params[:seat_status]}%","%#{params[:smoke_status]}%")
+    render :index
   end
 end

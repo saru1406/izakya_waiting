@@ -25,6 +25,7 @@ devise_scope :customer do
 root to: 'public/homes#top'
 
 scope module: :public do
+  get 'search' => 'stores#search'
   get 'customers/my_page'=>'customers#show'
   get 'customers/information/edit'=>'customers#edit'
   patch 'customers/information'=>'customers#update'
@@ -45,10 +46,12 @@ end
 
 namespace :admin do
   resources :stores, only: [:index,:show, :edit, :update]
-  resources :customers, only: [:index, :show, :edit, :update]
+  resources :customers, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:index, :destroy]
   resources :review_comments, only: [:index, :destroy]
 end
+
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -11,17 +11,24 @@ class Admin::CustomersController < ApplicationController
   def edit
     @customer = Customer.find(params[:id])
   end
-  
+
   def update
     customer = Customer.find(params[:id])
     if customer.update(customer_params)
      redirect_to admin_customer_path
     else
-     @customer = customer.find(params[:id]) 
+     @customer = customer.find(params[:id])
      render :edit
-    end  
+    end
   end
-  
+
+  def destroy
+    customer = Customer.find(params[:id])
+    customer.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to admin_customers_path
+  end
+
   private
   def customer_params
     params.require(:customer).permit(:name)
