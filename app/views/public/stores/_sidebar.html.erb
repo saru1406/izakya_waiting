@@ -1,0 +1,15 @@
+<table class="table border">
+  <tr>
+    <th><h4>ジャンル検索</h4></th>
+  </tr>
+  <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
+  <% tag.all.each do |t| %>
+  <tr>
+    <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td><%= submit_tag '検索' %></td>
+  </tr>
+  <% end %>
+</table>
