@@ -4,7 +4,7 @@
   </tr>
   <!--タグ検索　チェックボックス-->
   <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-  <% tag.all.each do |t| %>
+  <% tag.each do |t| %>
   <tr>
     <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
   </tr>

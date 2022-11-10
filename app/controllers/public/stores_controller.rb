@@ -22,6 +22,7 @@ class Public::StoresController < ApplicationController
   end
 
   def search
+    #絞り込み機能　空席情報、禁煙・喫煙
     @tag = Tag.all
     @stores = Store.where('seat_status LIKE(?) and smoke_status LIKE(?)', "%#{params[:seat_status]}%","%#{params[:smoke_status]}%")
     render :index

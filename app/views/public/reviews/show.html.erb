@@ -40,7 +40,7 @@
 <div class="row pb-5">
   <div class="col-2"></div>
   <h3 class="col-3 bg-light text-center">コメント</h3>
-  <div class="col-8 mx-auto">
+  <div class="col- mx-auto">
     <table class="table table-hover">
       <% @review_comments.each do |review_comment| %>
       <tr>
@@ -57,21 +57,22 @@
 </div>
 <% if @customer.name != "guestuser" %>
 <div class="row">
-  <div class="col-2"></div>
-  <h3 class="col-3 bg-light text-center mt-5">コメントを投稿する</h3>
-  <div class="col-12">
-    <%= form_with model: [@store,@review,@review_comment] do |f| %>
-      <table class="mx-auto text-right mt-3 mb-5">
-        <tr>
-          <td><%= f.label :"コメント" %></td>
-          <td><%= f.text_area :comment, size: "52x5" %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
-        </tr>
-      </table>
-    <% end %>
+  <div class="col-8 pb-3 mt-3 mx-auto">
+    <h3 class="col-3 bg-light text-center mt-5">コメントを投稿する</h3>
+    <div class="col-12">
+      <%= form_with model: [@store,@review,@review_comment] do |f| %>
+        <table class="mx-auto text-right mt-3 mb-5">
+          <tr>
+            <td><%= f.label :"コメント" %></td>
+            <td><%= f.text_area :comment, size: "52x5" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
   </div>
 </div>
 <% end %>
