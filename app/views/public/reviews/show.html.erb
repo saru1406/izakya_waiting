@@ -32,6 +32,9 @@
         <tr>
           <td style="width: 1%"><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
         </tr>
+        <tr>
+          <td><%= render 'favorite', store: @store, review: @review %></td>
+        </tr>
       </table>
       <%= link_to '編集する', edit_store_review_path(@review.store_id,@review.id), class: 'btn btn-success mt-3' %>
       <%= link_to '削除する', store_review_path(@review.store_id,@review.id), class: 'btn btn-danger mt-3', method: :delete %>

@@ -7,9 +7,8 @@
   <div class="col-8">
     <h2 class="col-4 bg-light text-center">居酒屋一覧</h2>
     <% @stores.each do |store| %>
-    <div class="pb-4">
       <%= link_to store_path(store.id), class: "text-decoration-none" do %>
-      <table class="table-sm table-warning border text-dark">
+      <table class="table-sm table-warning border text-dark my-4">
         <tr>
           <th><%= image_tag store.get_image, size: "200x200" %></th>
           <th class="text-right">
@@ -34,7 +33,6 @@
         </tr>
       </table>
       <% end %>
-    </div>
     <% end %>
   </div>
 </div>

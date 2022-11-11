@@ -8,9 +8,9 @@ class Store < ApplicationRecord
 
          has_many :reviews, dependent: :destroy
          has_many :review_comments, dependent: :destroy
-         
          has_many :store_tags,dependent: :destroy
          has_many :tags,through: :store_tags, dependent: :destroy
+         has_many :favorites, dependent: :destroy
 
 
           def get_image
