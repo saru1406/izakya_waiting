@@ -33,7 +33,7 @@
           <td style="width: 1%"><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
         </tr>
         <tr>
-          <td><%= render 'favorite', store: @store, review: @review %></td>
+          <td class="favorite<%= @review.id %>"><%= render 'public/favorites/favorite', store: @store, review: @review %></td>
         </tr>
       </table>
       <%= link_to '編集する', edit_store_review_path(@review.store_id,@review.id), class: 'btn btn-success mt-3' %>
@@ -43,38 +43,16 @@
 <div class="row pb-5">
   <div class="col-2"></div>
   <h3 class="col-3 bg-light text-center">コメント</h3>
-  <div class="col- mx-auto">
-    <table class="table table-hover">
-      <% @review_comments.each do |review_comment| %>
-      <tr>
-        <td><%=safe_join(review_comment.comment.split("\n"),tag(:br))%></td>
-        <td class="text-right">
-          <%= review_comment.customer.name %><br>
-          <%= review_comment.created_at.strftime('%Y/%m/%d') %>
-        </td>
-        <td><%= link_to '削除する', store_review_review_comment_path(review_comment.store,review_comment.review,review_comment),class: "btn btn-sm btn-danger", method: :delete %></td>
-      </tr>
-      <% end %>
-    </table>
+  <div class="review-comments-index col-9 mx-auto">
+    <%= render 'public/review_comments/review_index', review_comments: @review_comments %>
   </div>
 </div>
 <% if @customer.name != "guestuser" %>
 <div class="row">
   <div class="col-8 pb-3 mt-3 mx-auto">
-    <h3 class="col-3 bg-light text-center mt-5">コメントを投稿する</h3>
+    <h3 class="col-5 bg-light text-center mt-5">コメントを投稿する</h3>
     <div class="col-12">
-      <%= form_with model: [@store,@review,@review_comment] do |f| %>
-        <table class="mx-auto text-right mt-3 mb-5">
-          <tr>
-            <td><%= f.label :"コメント" %></td>
-            <td><%= f.text_area :comment, size: "52x5" %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
-          </tr>
-        </table>
-      <% end %>
+      <%= render 'public/review_comments/form', store: @store, review: @review, review_comment: @review_comment %>
     </div>
   </div>
 </div>

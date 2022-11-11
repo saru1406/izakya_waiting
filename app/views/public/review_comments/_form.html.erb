@@ -1,0 +1,11 @@
+<%= form_with model: [store,review,review_comment], local: false do |f| %>
+  <table class="mx-auto text-right mt-3 mb-5">
+    <tr>
+      <td><%= f.text_area :comment, size: "52x5", class: "comment-textarea" %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
+    </tr>
+  </table>
+<% end %>
