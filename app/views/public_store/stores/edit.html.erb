@@ -1,8 +1,6 @@
 <h3 class="bg-light border px-3 mb-3 d-inline-block">店舗情報編集</h3>
-<div class="text-danger">
-  <%= flash[:alret] %>
-</div>
-<%= form_with model: @store, url: public_store_store_path, method: :patch do |f| %>
+<div class="text-danger"><%= flash[:alret] %></div>
+<%= form_with model: @store, url: public_store_stores_information_path, method: :patch do |f| %>
   <table class="table table-borderless text-nowrap">
     <tr>
       <th>店舗名</th>
@@ -69,6 +67,6 @@
   </div>
 <% end %>
   <div class='col-3'>
-    <%= link_to '退会する',"#", method: :patch, "data-confirm" => "本当に退会しますか？",class: 'btn btn-danger' %>
+    <%= link_to '退会する',public_store_stores_information_path, method: :delete, "data-confirm" => "本当に退会しますか？",class: 'btn btn-danger' %>
   </div>
 </div>

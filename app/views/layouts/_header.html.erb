@@ -12,7 +12,6 @@
               <p>ようこそ、<%= current_customer.name %>さん！</p>
             </div>
             <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-light ms-1" %>
-            
             <%= link_to "居酒屋一覧", stores_path, class: "btn btn-outline-light ms-1" %>
             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
           <% else %>
@@ -23,7 +22,7 @@
         <% end %>
       <% end %>
       <% if store_signed_in? && !admin_signed_in? %>
-        <%= link_to "マイページ", public_store_stores_my_page_path(current_store), class: "btn btn-outline-light ms-1" %>
+        <%= link_to "マイページ", public_store_stores_my_page_path, class: "btn btn-outline-light ms-1" %>
         <%= link_to "ログアウト", destroy_store_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
       <% elsif !store_signed_in? && admin_signed_in? %>
         <%= link_to "レビュー一覧", admin_reviews_path, class: "btn btn-outline-light ms-1" %>

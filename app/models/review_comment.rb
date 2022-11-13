@@ -4,4 +4,6 @@ class ReviewComment < ApplicationRecord
   belongs_to :review
   belongs_to :store
 
+validates :comment,presence:true
+
 end

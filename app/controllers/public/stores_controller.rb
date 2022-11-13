@@ -1,8 +1,9 @@
 class Public::StoresController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
     @stores = Store.all
-    @tag = Tag.all
+    @tags = Tag.all
     #サイドバーのタグ検索
     if params[:tag_ids]
       @stores = []
@@ -18,12 +19,12 @@ class Public::StoresController < ApplicationController
     @review = Review.new
     @reviews = @store.reviews.all
     @customer = current_customer
-    @tag = Tag.all
+    @tags = Tag.all
   end
 
   def search
     #絞り込み機能　空席情報、禁煙・喫煙
-    @tag = Tag.all
+    @tags = Tag.all
     @stores = Store.where('seat_status LIKE(?) and smoke_status LIKE(?)', "%#{params[:seat_status]}%","%#{params[:smoke_status]}%")
     render :index
   end

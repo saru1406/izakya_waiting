@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
          has_many :favorites, dependent: :destroy
          has_many :bookmarks, dependent: :destroy
 
+         validates :name,presence:true
+
 
          def self.guest
           find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|

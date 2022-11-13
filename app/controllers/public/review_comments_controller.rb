@@ -1,4 +1,5 @@
 class Public::ReviewCommentsController < ApplicationController
+  before_action :authenticate_customer!
 
   def create
     @store = Store.find(params[:store_id])

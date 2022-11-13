@@ -44,11 +44,13 @@ end
 
 namespace :public_store do
   get 'stores/my_page'=>'stores#show'
-  resources :stores, only: [:edit, :update]
+  get 'stores/information/edit'=>'stores#edit'
+  patch 'stores/information'=>'stores#update'
+  delete 'stores/information'=>'stores#destroy'
 end
 
 namespace :admin do
-  resources :stores, only: [:index,:show, :edit, :update]
+  resources :stores, only: [:index,:show, :edit, :update, :destroy]
   resources :customers, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:index, :destroy]
   resources :review_comments, only: [:index, :destroy]

@@ -15,11 +15,20 @@ class Admin::StoresController < ApplicationController
   def update
     store = Store.find(params[:id])
     if store.update(store_params)
-     redirect_to admin_store_path
+      flash[:notice] = "変更を保存しました。"
+      redirect_to admin_store_path
     else
-     @store = Store.find(params[:id])
-     render :edit
+      flash[:alret] = "項目を全て記入してください。"
+      @store = Store.find(params[:id])
+      render :edit
     end
+  end
+
+  def destroy
+    store = Store.find(params[:id])
+    store.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to admin_stores_path
   end
 
 

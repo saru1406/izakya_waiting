@@ -1,16 +1,18 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_customer!
 
   def create
-    store = Store.find(params[:store_id])
-    review = Review.new(review_params)
-    review.customer_id = current_customer.id
-    review.store_id = store.id
-    if review.save
-      redirect_to store_path(store.id)
+    @store = Store.find(params[:store_id])
+    @customer = current_customer
+    @review = Review.new(review_params)
+    @review.customer_id = @customer.id
+    @review.store_id = @store.id
+    if @review.save
+      redirect_to store_path(@store.id)
     else
-      @store = Store.find(params[:id])
+      @tags = Tag.all
       @reviews = Review.all
-      render :"store/show"
+      render :'public/stores/show'
     end
   end
 

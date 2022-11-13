@@ -1,4 +1,5 @@
 class PublicStore::StoresController < ApplicationController
+  before_action :authenticate_store!
 
   def show
     @store = current_store
@@ -18,6 +19,13 @@ class PublicStore::StoresController < ApplicationController
       @customer = current_store
       render :edit
     end
+  end
+
+  def destroy
+    store = current_store
+    store.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to root_path
   end
 
   private

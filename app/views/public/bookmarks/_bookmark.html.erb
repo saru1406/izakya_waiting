@@ -1,5 +1,5 @@
 <% if store.bookmarked_by?(current_customer) %>
   <%= link_to "お気に入りを外す", store_bookmarks_path(store), method: :delete, remote: true, class: "btn btn-danger" %>
 <% else %>
-  <%= link_to "お気に入り", store_bookmarks_path(store), method: :post, remote: true, class: "btn btn-success" %>
+  <%= link_to "お気に入り登録", store_bookmarks_path(store), method: :post, remote: true, class: "btn btn-success" %>
 <% end %>

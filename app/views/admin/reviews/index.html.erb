@@ -1,18 +1,20 @@
 <div class="row">
   <h3 class="bg-light border px-3 mb-3 d-inline-block">レビュー投稿一覧</h3>
-  <table class="table table-hover">
+  <table class="table table-hover text-nowrap">
     <thead class="thead thead-light">
-      <th class="col-2">レビューID</th>
-      <th class="col-1">投稿者</th>
-      <th class="col-2">評価</th>
+      <th>レビューID</th>
+      <th>居酒屋ID</th>
+      <th>投稿者</th>
+      <th>評価</th>
       <th>タイトル</th>
       <th>本文</th>
-      <th class="col-1"></th>
+      <th></th>
     </thead>
     <tbody>
       <% @reviews.each do |review| %>
       <tr>
         <td><%= review.id %></td>
+        <td><%= review.store.id %></td>
         <td><%= link_to review.customer.name, admin_customer_path(review.customer.id) %></td>
         <td><div id="star-rate<%= review.id%>"></td></div>
           <script>

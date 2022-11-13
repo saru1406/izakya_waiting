@@ -1,7 +1,8 @@
 class Public::BookmarksController < ApplicationController
 
   def index
-    @bookmarks = Bookmark.all
+    @customer = current_customer
+    @bookmarks = @customer.bookmarks.all
   end
 
   def create

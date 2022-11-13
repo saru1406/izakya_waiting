@@ -13,6 +13,16 @@ class Store < ApplicationRecord
          has_many :favorites, dependent: :destroy
          has_many :bookmarks, dependent: :destroy
 
+         validates :name,presence:true
+         validates :telephone_number,presence:true
+         validates :address,presence:true
+         validates :budget_min,presence:true
+         validates :budget_max,presence:true
+         validates :regular_holiday,presence:true
+         validates :business_hours,presence:true
+         validates :smoke_status,presence:true
+         validates :service_charge,presence:true
+
 
           def get_image
             (image.attached?) ? image : 'no.image.jpeg'
