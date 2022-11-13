@@ -4,39 +4,40 @@
   </div>
   <div class="col-8">
     <h2 class="col-7 bg-light text-center"><%= @store.name %>詳細</h2>
-    <div class="pb-4">
-      <table class="table-sm table-warning border">
-        <tr>
-          <th><%= image_tag @store.get_image, size: "250x250" %></th>
-          <th class="text-right">
-            店舗名:<br>
-            予算:<br>
-            住所:<br>
-            電話番号:<br>
-            ジャンル:<br>
-            空席情報:<br>
-            営業時間:<br>
-            定休日:<br>
-            禁煙・喫煙:<br>
-            チャージ料:<br>
-          </th>
-          <td></td>
-          <td style="width: 43%">
-            <%= @store.name %><br>
-            ￥<%= @store.budget_min %>円~￥<%= @store.budget_max %>円<br>
-            <%= @store.address %><br>
-            <%= @store.telephone_number %><br>
-            <% @store.tags.each do |tag| %>
-              ・<%= tag.name %>
-            <% end %><br>
-            <%= @store.seat_status %><br>
-            <%= @store.business_hours %><br>
-            <%= @store.regular_holiday %><br>
-            <%= @store.smoke_status %><br>
-            <%= @store.service_charge %>円<br>
-          </td>
-        </tr>
-      </table>
+    <table class="table-sm table-warning border">
+      <tr>
+        <th><%= image_tag @store.get_image, size: "250x250" %></th>
+        <th class="text-right">
+          店舗名:<br>
+          予算:<br>
+          住所:<br>
+          電話番号:<br>
+          ジャンル:<br>
+          空席情報:<br>
+          営業時間:<br>
+          定休日:<br>
+          禁煙・喫煙:<br>
+          チャージ料:<br>
+        </th>
+        <td></td>
+        <td style="width: 43%">
+          <%= @store.name %><br>
+          ￥<%= @store.budget_min %>円~￥<%= @store.budget_max %>円<br>
+          <%= @store.address %><br>
+          <%= @store.telephone_number %><br>
+          <% @store.tags.each do |tag| %>
+            ・<%= tag.name %>
+          <% end %><br>
+          <%= @store.seat_status %><br>
+          <%= @store.business_hours %><br>
+          <%= @store.regular_holiday %><br>
+          <%= @store.smoke_status %><br>
+          <%= @store.service_charge %>円<br>
+        </td>
+      </tr>
+    </table>
+    <div class="bookmark<%= @store.id %>">
+    <%= render 'public/bookmarks/bookmark', store: @store %>
     </div>
   </div>
 </div>
@@ -81,7 +82,7 @@
           <%if review.body.length > 100 %>
           <td style="width: 1%">
             <%=safe_join(review.body.truncate(100).split("\n"),tag(:br))%>
-            <%= link_to store_review_path(@store,review.id) do %>&lt;もっと見る&gt;<% end %>
+            <%= link_to "<もっと見る>", store_review_path(@store,review.id) %>
           </td>
           <!--コメントが100文字以下なら全文表示-->
           <% else %>

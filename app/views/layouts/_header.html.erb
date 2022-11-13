@@ -12,6 +12,7 @@
               <p>ようこそ、<%= current_customer.name %>さん！</p>
             </div>
             <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-light ms-1" %>
+            
             <%= link_to "居酒屋一覧", stores_path, class: "btn btn-outline-light ms-1" %>
             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
           <% else %>

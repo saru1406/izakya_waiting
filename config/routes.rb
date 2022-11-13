@@ -30,9 +30,11 @@ scope module: :public do
   get 'customers/information/edit'=>'customers#edit'
   patch 'customers/information'=>'customers#update'
   delete 'customers/information'=>'customers#destroy'
+  resources :bookmarks, only: [:index]
   resources :reviews, only: [:index]
   resources :review_comments, only: [:index]
   resources :stores, only: [:index, :show] do
+    resource :bookmarks, only: [:create, :destroy]
     resources :reviews, only: [:show, :create, :destroy, :edit, :update] do
       resource :favorites, only: [:create, :destroy]
       resources :review_comments, only: [:create, :destroy]
@@ -51,7 +53,6 @@ namespace :admin do
   resources :reviews, only: [:index, :destroy]
   resources :review_comments, only: [:index, :destroy]
 end
-
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

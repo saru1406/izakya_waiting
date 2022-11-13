@@ -26,6 +26,10 @@
           <td> コメント</td>
           <td><%= link_to '一覧を見る', review_comments_path , class:"btn btn-primary btn-block" %></td>
         </tr>
+        <tr>
+          <td>お気に入り</td>
+          <td><%= link_to "一覧を見る", bookmarks_path, class: "btn btn-primary btn-block" %></td>
+        </tr>
       </table>
       <% end %>
     </div>
