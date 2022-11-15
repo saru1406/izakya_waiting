@@ -2,7 +2,8 @@ class Public::StoresController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @stores = Store.all
+    #掲載情報を公開のみ一覧に表示
+    @stores = Store.published
     @tags = Tag.all
     #サイドバーのタグ検索
     if params[:tag_ids]

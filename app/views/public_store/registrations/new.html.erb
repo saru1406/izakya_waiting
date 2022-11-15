@@ -10,7 +10,7 @@
     <table class="table table-borderless text-nowrap">
       <tr>
         <th>店舗名</th>
-        <td><%= f.text_field :name, autofocus: true, placeholder: "店舗名" %></td>
+        <td><%= f.text_field :name, autofocus: true, placeholder: "店舗名 ××店" %></td>
       </tr>
       <tr>
         <th>画像</th>
@@ -18,15 +18,15 @@
       </tr>
       <tr>
         <th>予算</th>
-        <td><%= f.text_field :budget_min %>円 ～<%= f.text_field :budget_max %>円</td>
+        <td><%= f.text_field :budget_min, placeholder: "0000" %>円 ～<%= f.text_field :budget_max, placeholder: "0000" %>円</td>
       </tr>
       <tr>
         <th>住所</th>
-        <td><%= f.text_field :address, class: 'w-100' %></td>
+        <td><%= f.text_field :address, placeholder: "東京都×××市×××区××町0-0", class: 'w-100' %></td>
       </tr>
       <tr>
-        <th>電話番号(ハイフンなし</th>
-        <td><%= f.text_field :telephone_number %></td>
+        <th>電話番号(ハイフンなし)</th>
+        <td><%= f.text_field :telephone_number, placeholder: "00000000000" %></td>
       </tr>
       <tr>
         <th>空席情報</th>
@@ -34,19 +34,19 @@
       </tr>
       <tr>
         <th>営業時間</th>
-        <td><%= f.text_field :business_hours %></td>
+        <td><%= f.text_field :business_hours, placeholder: "例 18:00~24:00" %></td>
       </tr>
       <tr>
         <th>定休日</th>
-        <td><%= f.text_field :regular_holiday %></td>
+        <td><%= f.text_field :regular_holiday, placeholder: "例 火曜日" %></td>
       </tr>
       <tr>
         <th>禁煙・喫煙</th>
         <td><%= f.select :smoke_status, [["禁煙"], ["喫煙"]], include_blank: "選択して下さい" %></td>
       </tr>
       <tr>
-        <th>チャージ</th>
-        <td><%= f.text_field :service_charge %>円</td>
+        <th>チャージ料</th>
+        <td><%= f.text_field :service_charge, placeholder: "000" %>円</td>
       </tr>
       <tr>
         <th>メールアドレス</th>

@@ -23,5 +23,7 @@
     <% end %>
     <h5 class="col-5 bg-light">会員登録がお済みでない方</h5>
     <p class="col-7"><%= render "public/shared/links" %>から新規登録を行なってください</p>
+    <p class="col-8">ゲストログインは<%= link_to "こちら",public_guest_sign_in_path, method: :post %>からログインを行ってください。<br>
+    (閲覧のみ可 ※レビュー,コメントは投稿できません)</p>
   </div>
 </div>

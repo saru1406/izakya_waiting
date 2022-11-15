@@ -9,11 +9,11 @@
     <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer' do |f| %>
     <table class="table table-borderless text-nowrap">
       <tr>
-        <th><%= f.label :"ニックネーム" %></th>
+        <th>ニックネーム</th>
         <td><%= f.text_field :name, autofocus: true, placeholder: "ニックネーム" %></td>
       </tr>
       <tr>
-        <th> <%= f.label :"メールアドレス" %></th>
+        <th>メールアドレス</th>
         <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></td>
       </tr>
       <tr>
@@ -26,7 +26,7 @@
         <td><%= f.password_field :password, autocomplete: "new-password" %></td>
       </tr>
       <tr>
-        <th><%= f.label :"パスワード(確認用)" %></th>
+        <th>パスワード(確認用)</th>
         <td><%= f.password_field :password_confirmation %></td>
       </tr>
     </table>
@@ -36,5 +36,7 @@
     <% end %>
     <h5 class="col-4 bg-light">既に登録済みの方</h5>
     <p class="col-7"><%= render "public/shared/links" %>からログインしてください</p>
+    <p class="col-8">ゲストログインは<%= link_to "こちら",public_guest_sign_in_path, method: :post %>からログインを行ってください。<br>
+    (閲覧のみ可 ※レビュー,コメントは投稿できません)</p>
   </div>
 </div>

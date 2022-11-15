@@ -23,6 +23,9 @@ class Store < ApplicationRecord
          validates :smoke_status,presence:true
          validates :service_charge,presence:true
 
+         #掲載情報の公開published 非公開unpublished
+         scope :published, -> {where(is_published: true)}
+         scope :unpublished, -> {where(is_published: false)}
 
           def get_image
             (image.attached?) ? image : 'no.image.jpeg'
