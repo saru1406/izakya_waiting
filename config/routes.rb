@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'tags/index'
+    get 'tags/edit'
+  end
  # 顧客用
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -54,6 +58,7 @@ namespace :admin do
   resources :customers, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:index, :destroy]
   resources :review_comments, only: [:index, :destroy]
+  resources :tags, only: [:index, :create, :edit, :update, :destroy]
 end
 
 
