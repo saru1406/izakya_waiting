@@ -6,14 +6,16 @@ class Public::BookmarksController < ApplicationController
   end
 
   def create
+    @customer = current_customer
     @store = Store.find(params[:store_id])
-    bookmark = current_customer.bookmarks.new(store_id: @store.id)
+    bookmark = @customer.bookmarks.new(store_id: @store.id)
     bookmark.save
   end
 
   def destroy
+    @customer = current_customer
     @store = Store.find(params[:store_id])
-    bookmark = current_customer.bookmarks.find_by(store_id: @store.id)
+    bookmark = @customer.bookmarks.find_by(store_id: @store.id)
     bookmark.destroy
   end
 end

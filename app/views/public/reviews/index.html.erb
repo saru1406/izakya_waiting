@@ -1,31 +1,33 @@
 <div class="row">
-  <h3 class="bg-light border px-3 mb-3 d-inline-block">レビュー投稿一覧</h3>
-  <table class="table table-hover">
-    <thead>
-    <th>評価</th>
-    <th>タイトル</th>
-    <th>本文</th>
-    </thead>
-    <tbody>
-      <% @reviews.each do |review| %>
-      <tr>
-        <td><div id="star-rate<%= review.id%>"></td></div>
-          <script>
-            $('#star-rate<%= review.id%>').empty();
-            $('#star-rate<%= review.id%>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf  : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            score: <%= review.star %>,
-            });
-          </script>
-        <td><%= link_to review.title, store_review_path(review.store_id,review.id) %></td>
-        <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="col-lg-12">
+    <h3 class="bg-light border px-3 mb-3 d-inline-block">レビュー投稿一覧</h3>
+    <table class="table table-hover table-responsive-sm text-nowrap">
+      <thead>
+      <th>評価</th>
+      <th>タイトル</th>
+      <th>本文</th>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><div id="star-rate<%= review.id%>"></td></div>
+              <script>
+                $('#star-rate<%= review.id%>').empty();
+                $('#star-rate<%= review.id%>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf  : '<%= asset_path('star-half.png') %>',
+                half      : true,
+                readOnly: true,
+                score: <%= review.star %>,
+                });
+              </script>
+            <td><%= link_to review.title, store_review_path(review.store_id,review.id) %></td>
+            <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

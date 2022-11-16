@@ -1,18 +1,18 @@
-<div class="sticky-top">
+<div class="sticky-top py-4">
   <table class="table border">
     <tr>
       <th><h4>ジャンル検索</h4></th>
     </tr>
     <!--タグ検索　チェックボックス-->
     <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-    <% tags.each do |t| %>
-    <tr>
-      <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
-    </tr>
-    <% end %>
-    <tr>
-      <td><%= submit_tag '検索' %></td>
-    </tr>
+      <% tags.each do |t| %>
+        <tr>
+          <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><%= submit_tag '検索' %></td>
+      </tr>
     <% end %>
   </table>
   <!--絞り込み検索　空席情報、禁煙・喫煙情報　プルダウン-->

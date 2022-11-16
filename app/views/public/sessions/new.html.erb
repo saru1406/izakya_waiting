@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="mx-auto col-11 col-sm-10 col-lg-8">
+  <div class="mx-auto col-sm-10 col-lg-8">
     <div class="my-4">
-      <h4 class="col-3 bg-light text-center">ログイン</h4>
+      <h4 class="col-lg-3 bg-light text-center">ログイン</h4>
       <div class="text-danger">
         <%= render "public/shared/error_messages", resource: resource %>
       </div>
@@ -21,9 +21,9 @@
       <%= f.submit "ログイン", class: "btn btn-success" %>
     </div>
     <% end %>
-    <h5 class="col-5 bg-light">会員登録がお済みでない方</h5>
-    <p class="col-7"><%= render "public/shared/links" %>から新規登録を行なってください</p>
-    <p class="col-8">ゲストログインは<%= link_to "こちら",public_guest_sign_in_path, method: :post %>からログインを行ってください。<br>
+    <h5 class="col-lg-5 bg-light">会員登録がお済みでない方</h5>
+    <p class="col-lg-7"><%= render "public/shared/links" %>から新規登録を行なってください</p>
+    <p class="col-lg-8">ゲストログインは<%= link_to "こちら",public_guest_sign_in_path, method: :post %>からログインを行ってください。<br>
     (閲覧のみ可 ※レビュー,コメントは投稿できません)</p>
   </div>
 </div>

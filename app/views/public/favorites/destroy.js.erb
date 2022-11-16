@@ -1,1 +1,1 @@
-$(".favorite<%= @review.id %>").html("<%= j(render 'public/favorites/favorite', store: @store, review: @review) %>");
+$(".favorite<%= @review.id %>").html("<%= j(render 'public/favorites/favorite', store: @store, review: @review, customer: @customer) %>");

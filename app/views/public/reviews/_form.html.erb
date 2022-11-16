@@ -1,37 +1,31 @@
-<div class="col-12">
-  <%= form_with model: [store,review] do |f| %>
-    <table class="mx-auto text-right mt-3">
-      <tr>
-        <td><%= f.label :star,'評価' %></td>
-        <td>  <!-- 評価 -->
-          <div class="text-center" id="star">
-          <%= f.hidden_field :star, id: :review_star %></div>
-        </td>
-          <!-- 評価javascript -->
-          <script>
-          $('#star').empty();
-          $('#star').raty({
-          size     : 36,
-          starOff  :  '<%= asset_path('star-off.png') %>',
-          starOn   : '<%= asset_path('star-on.png') %>',
-          starHalf : '<%= asset_path('star-half.png') %>',
-          scoreName: 'review[star]',
-          half: true,
-          });
-        </script>
-      </tr>
-      <tr>
-        <td>タイトル</td>
-        <td><%= f.text_field :title, placeholder: "タイトル", size: "50" %></td>
-      </tr>
-      <tr>
-        <td>本文</td>
-        <td><%= f.text_area :body, placeholder: "本文", size: "52x5" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
-      </tr>
-    </table>
-  <% end %>
-</div>
+<%= form_with model: [store,review] do |f| %>
+  <table class="text-right mt-3">
+    <tr>
+      <td>  <!-- 評価 -->
+        <div class="text-left" id="star">
+        <%= f.hidden_field :star, id: :review_star %></div>
+      </td>
+        <!-- 評価javascript -->
+        <script>
+        $('#star').empty();
+        $('#star').raty({
+        size     : 36,
+        starOff  :  '<%= asset_path('star-off.png') %>',
+        starOn   : '<%= asset_path('star-on.png') %>',
+        starHalf : '<%= asset_path('star-half.png') %>',
+        scoreName: 'review[star]',
+        half: true,
+        });
+      </script>
+    </tr>
+    <tr>
+      <td><%= f.text_field :title, placeholder: "タイトル", size: "45" %></td>
+    </tr>
+    <tr>
+      <td><%= f.text_area :body, placeholder: "本文", size: "48x5" %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "投稿する",class: 'btn btn-success' %></td>
+    </tr>
+  </table>
+<% end %>

@@ -1,57 +1,59 @@
 <div class="row">
-  <div class="col-2"></div>
-  <h3 class="col-3 bg-light text-center">レビュー</h3>
-    <div class="col-8 pb-3 mt-3 mx-auto">
-      <table class="border border-warning">
-        <tr>
-          <td><!-- 評価 -->
-            <div id="star-rate<%= @review.id%>"></div>
-          </td>
-          <!-- 評価javascript -->
-          <script>
-            $('#star-rate<%= @review.id%>').empty();
-            $('#star-rate<%= @review.id%>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf  : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            score: <%= @review.star %>,
-            });
-          </script>
-        </tr>
-        <tr>
-          <td class="text-right pr-3">
-            投稿者:<%= @review.customer.name %>
-            投稿日:<%= @review.created_at.strftime('%Y/%m/%d') %>
-          </td>
-        <tr>
-          <th style="width: 1%"><%= @review.title %></th>
-        </tr>
-        <tr>
-          <td style="width: 1%"><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
-        </tr>
-        <tr>
-          <td class="favorite<%= @review.id %>"><%= render 'public/favorites/favorite', store: @store, review: @review %></td>
-        </tr>
-      </table>
+  <div class="col-lg-2"></div>
+  <h3 class="col-lg-3 bg-light text-center">レビュー</h3>
+  <div class="col-lg-8 pb-3 mt-3 mx-auto">
+    <table class="border border-warning">
+      <tr>
+        <td><!-- 評価 -->
+          <div id="star-rate<%= @review.id%>"></div>
+        </td>
+        <!-- 評価javascript -->
+        <script>
+          $('#star-rate<%= @review.id%>').empty();
+          $('#star-rate<%= @review.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf  : '<%= asset_path('star-half.png') %>',
+          half      : true,
+          readOnly: true,
+          score: <%= @review.star %>,
+          });
+        </script>
+      </tr>
+      <tr>
+        <td class="text-right pr-3">
+          <div class="favorite<%= @review.id %>">
+            <%= render 'public/favorites/favorite', store: @store, review: @review, customer: @customer %>
+          </div>
+          投稿者:<%= @review.customer.name %>
+          投稿日:<%= @review.created_at.strftime('%Y/%m/%d') %>
+        </td>
+      <tr>
+        <th style="width: 1%"><%= @review.title %></th>
+      </tr>
+      <tr>
+        <td style="width: 1%"><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
+      </tr>
+    </table>
+    <% if @review.customer == current_customer %>
       <%= link_to '編集する', edit_store_review_path(@review.store_id,@review.id), class: 'btn btn-success mt-3' %>
       <%= link_to '削除する', store_review_path(@review.store_id,@review.id), class: 'btn btn-danger mt-3', method: :delete %>
-    </div>
+    <% end %>
+  </div>
 </div>
 <div class="row pb-5">
-  <div class="col-2"></div>
-  <h3 class="col-3 bg-light text-center">コメント</h3>
-  <div class="review-comments-index col-9 mx-auto">
-    <%= render 'public/review_comments/review_index', review_comments: @review_comments %>
+  <div class="col-lg-2"></div>
+  <h3 class="col-lg-3 bg-light text-center">コメント</h3>
+  <div class="review-comments-index col-lg-9 mx-auto">
+    <%= render 'public/review_comments/comment_index', review_comments: @review_comments %>
   </div>
 </div>
 <% if @customer.name != "guestuser" %>
 <div class="row">
-  <div class="col-8 pb-3 mt-3 mx-auto">
-    <h3 class="col-5 bg-light text-center mt-5">コメントを投稿する</h3>
-    <div class="col-12">
+  <div class="col-lg-8 pb-3 mt-3 mx-auto">
+    <h3 class="col-lg-5 bg-light text-center mt-5">コメントを投稿する</h3>
+    <div class="col-lg-12">
       <%= render 'public/review_comments/form', store: @store, review: @review, review_comment: @review_comment %>
     </div>
   </div>
