@@ -1,8 +1,8 @@
 <%= form_with model: [store,review] do |f| %>
-  <table class="text-right mt-3">
+  <table class="text-left mt-3">
     <tr>
       <td>  <!-- 評価 -->
-        <div class="text-left" id="star">
+        <div id="star">
         <%= f.hidden_field :star, id: :review_star %></div>
       </td>
         <!-- 評価javascript -->
@@ -17,6 +17,9 @@
         half: true,
         });
       </script>
+    </tr>
+    <tr>
+      <td><%= f.file_field :review_image, multiple: true %></td>
     </tr>
     <tr>
       <td><%= f.text_field :title, placeholder: "タイトル", size: "45" %></td>

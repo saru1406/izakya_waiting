@@ -86,6 +86,15 @@
             <%=safe_join(review.body.split("\n"),tag(:br))%>
           </td>
           <% end %>
+          <tr>
+            <% if review.review_image.attached? %>
+              <td>
+                <% review.review_image.each do |review_image| %>
+                <%= image_tag review_image, size: "120x120" %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
         </tr>
       </table>
     <% end %>

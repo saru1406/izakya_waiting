@@ -35,6 +35,15 @@
       <tr>
         <td style="width: 1%"><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
       </tr>
+      <tr>
+        <% if @review.review_image.attached? %>
+          <td>
+            <% @review.review_image.each do |review_image| %>
+            <%= image_tag review_image, size: "120x120" %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
     </table>
     <% if @review.customer == current_customer %>
       <%= link_to '編集する', edit_store_review_path(@review.store_id,@review.id), class: 'btn btn-success mt-3' %>

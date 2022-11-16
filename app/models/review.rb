@@ -1,5 +1,7 @@
 class Review < ApplicationRecord
 
+  has_many_attached :review_image
+
   belongs_to :store
   belongs_to :customer
   has_many :review_comments, dependent: :destroy
