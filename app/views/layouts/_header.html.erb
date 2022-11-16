@@ -1,36 +1,39 @@
 <header class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-  <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </div>
+  </button>
   <%= link_to "LOGO",root_path, class: "btn btn-outline-light ms-1" %>
-  <div class="collapse navbar-collapse justify-content-end">
-    <div class="button_area m-3 text-light">
-      <% if !admin_signed_in? %>
-        <% if !store_signed_in? %>
-          <% if customer_signed_in? %>
-            <div class="d-inline-block ">
-              <p>ようこそ、<%= current_customer.name %>さん！</p>
-            </div>
-            <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-light ms-1" %>
-            <%= link_to "居酒屋一覧", stores_path, class: "btn btn-outline-light ms-1" %>
-            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
-          <% else %>
-            <%= link_to "ゲストログイン",public_guest_sign_in_path, method: :post, class: "btn btn-outline-light ms-1" %>
-            <%= link_to "新規登録",new_customer_registration_path, class: "btn btn-outline-light ms-1" %>
-            <%= link_to "ログイン",new_customer_session_path, class: "btn btn-outline-light ms-1" %>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      <div class="button_area m-3 text-light">
+        <% if !admin_signed_in? %>
+          <% if !store_signed_in? %>
+            <% if customer_signed_in? %>
+              <div class="d-inline-block ">
+                <p>ようこそ、<%= current_customer.name %>さん！</p>
+              </div>
+              <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-light ms-1" %>
+              <%= link_to "居酒屋一覧", stores_path, class: "btn btn-outline-light ms-1" %>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
+            <% else %>
+              <%= link_to "ゲストログイン",public_guest_sign_in_path, method: :post, class: "btn btn-outline-light ms-1" %>
+              <%= link_to "新規登録",new_customer_registration_path, class: "btn btn-outline-light ms-1" %>
+              <%= link_to "ログイン",new_customer_session_path, class: "btn btn-outline-light ms-1" %>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-      <% if store_signed_in? && !admin_signed_in? %>
-        <%= link_to "マイページ", public_store_stores_my_page_path, class: "btn btn-outline-light ms-1" %>
-        <%= link_to "ログアウト", destroy_store_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
-      <% elsif !store_signed_in? && admin_signed_in? %>
-        <%= link_to "レビュー一覧", admin_reviews_path, class: "btn btn-outline-light ms-1" %>
-        <%= link_to "コメント一覧", admin_review_comments_path, class: "btn btn-outline-light ms-1" %>
-        <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-light ms-1" %>
-        <%= link_to "居酒屋一覧", admin_stores_path, class: "btn btn-outline-light ms-1" %>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
-      <% end %>
-    </div>
+        <% if store_signed_in? && !admin_signed_in? %>
+          <%= link_to "マイページ", public_store_stores_my_page_path, class: "btn btn-outline-light ms-1" %>
+          <%= link_to "ログアウト", destroy_store_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
+        <% elsif !store_signed_in? && admin_signed_in? %>
+          <%= link_to "タグ一覧・追加", admin_tags_path, class: "btn btn-outline-light ms-1" %>
+          <%= link_to "レビュー一覧", admin_reviews_path, class: "btn btn-outline-light ms-1" %>
+          <%= link_to "コメント一覧", admin_review_comments_path, class: "btn btn-outline-light ms-1" %>
+          <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-light ms-1" %>
+          <%= link_to "居酒屋一覧", admin_stores_path, class: "btn btn-outline-light ms-1" %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
+        <% end %>
+      </div>
+    </ul>
   </div>
 </header>
