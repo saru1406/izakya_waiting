@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row pb-5">
   <h3 class="bg-light border px-3 mb-3 d-inline-block">レビュー投稿一覧</h3>
-  <table class="table table-hover text-nowrap">
-    <thead class="thead thead-light">
+  <table class="table table-hover">
+    <thead class="thead thead-light text-nowrap">
       <th>レビューID</th>
       <th>居酒屋ID</th>
       <th>投稿者</th>
@@ -16,7 +16,7 @@
         <td><%= review.id %></td>
         <td><%= review.store.id %></td>
         <td><%= link_to review.customer.name, admin_customer_path(review.customer.id) %></td>
-        <td><div id="star-rate<%= review.id%>"></td></div>
+        <td class="text-nowrap"><div id="star-rate<%= review.id%>"></td></div>
           <script>
             $('#star-rate<%= review.id%>').empty();
             $('#star-rate<%= review.id%>').raty({
@@ -29,9 +29,9 @@
             score: <%= review.star %>,
             });
           </script>
-        <td><%= review.title %></td>
+        <td class="text-nowrap"><%= review.title %></td>
         <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
-        <td><%= link_to "削除", admin_review_path(review.id), class: "btn btn-danger", method: :delete %></td>
+        <td class="text-nowrap"><%= link_to "削除", admin_review_path(review.id), class: "btn btn-danger", method: :delete %></td>
       </tr>
       <% end %>
     </tbody>

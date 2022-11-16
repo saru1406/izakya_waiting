@@ -1,7 +1,7 @@
 <h3 class="bg-light border px-3 mb-3 d-inline-block">店舗情報編集</h3>
 <div class="text-danger"><%= flash[:alret] %></div>
 <%= form_with model: @store, url: admin_store_path, method: :patch do |f| %>
-  <table class="table table-borderless text-nowrap">
+  <table class="table table-responsive-sm table-borderless text-nowrap">
     <tr>
       <th>店舗名</th>
       <td><%= f.text_field :name, autofocus: true, placeholder: "店舗名 ××店" %></td>
@@ -66,11 +66,11 @@
       </td>
   </table>
 <div class="row pb-5">
-  <div class='col-3'>
+  <div class='col-lg-3 col-5'>
     <%= f.submit "編集内容を保存",class: 'btn btn-success' %>
   </div>
 <% end %>
-  <div class='col-3'>
+  <div class='col-lg-3 col-5'>
     <%= link_to '強制退会',admin_store_path, method: :delete, "data-confirm" => "本当に退会させますか？",class: 'btn btn-danger' %>
   </div>
 </div>

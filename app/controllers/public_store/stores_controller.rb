@@ -13,7 +13,7 @@ class PublicStore::StoresController < ApplicationController
     store = current_store
     if store.update(store_params)
       flash[:notice] = "変更を保存しました。"
-      redirect_to public_store_stores_my_page_path(store)
+      redirect_to public_store_stores_my_page_path
     else
       flash[:alret] = "項目を全て記入してください。"
       @customer = current_store
