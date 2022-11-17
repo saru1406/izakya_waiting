@@ -1,54 +1,63 @@
-<div class="text-success"><%= flash[:notice] %></div>
-<div class="text-danger"><%= flash[:alret] %></div>
-<h2 class="col-lg-4 bg-light text-center">おすすめの居酒屋</h2>
-<div class="row py-4">
-  <% @stores.each do |store| %>
-    <div class="col-lg-2 text-center mx-auto mb-4 py-2">
-      <%= link_to store_path(store.id), class: "text-decoration-none text-dark" do %>
-        <%= image_tag store.get_image, size: "150x150" %><br>
-        <%= store.name %><br>
-        <%= store.seat_status %>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="d-flex align-items-end mb-4">
-    <%= link_to "すべての居酒屋を見る", stores_path %>
-  </div>
-  <div class="col-lg-12">
-    <table class="table table-responsive-sm text-nowrap border">
-      <tr>
-        <td><h5>ジャンル検索</h5></td>
-      </tr>
-        <!--タグ検索　チェックボックス-->
-        <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-          <tr>
-            <% @tag.each do |t| %>
-              <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
-            <% end %>
-            <td><%= submit_tag '検索' %></td>
-          </tr>
-        <% end %>
-    </table>
-    <!--絞り込み検索　空席情報、禁煙・喫煙情報　プルダウン-->
-    <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-      <%= select_tag(:seat_status, options_for_select([["空きわずか"],["空きあり"],["空き無し"]]), include_blank: "選択") %>
-      <%= select_tag(:smoke_status, options_for_select([["禁煙"],["喫煙"]]), include_blank: "選択") %>
-      <%= submit_tag '絞り込み' %>
-    <% end %>
+</div>
+<div class="card bg-dark text-white">
+  <img src="/assets/bar2.jpg" class="card-img" alt="...">
+  <div class="card-body text-center">
+    <h5 class="card-title">居酒屋Waiting</h5>
+    <div class="card-text">居酒屋の席情報が分かるレビューサイト</div>
   </div>
 </div>
-<% if !admin_signed_in? && !store_signed_in? && !customer_signed_in? %>
-  <div class="row my-5 mb-5">
-    <div class="col-lg-9">
-      <h5 class="col-lg-8 bg-light text-center">※ログインされていないと閲覧できません。</h5>
-      <li>ゲストログインは<%= link_to "こちら",public_guest_sign_in_path, method: :post %>からログインを行ってください。(閲覧のみ可 ※レビュー,コメントは投稿できません)</li>
-      <li>会員登録は<%= link_to "こちら",new_customer_registration_path %>から新規登録を行ってください。</li>
-      <li>ログインは<%= link_to "こちら",new_customer_session_path %>からログインを行ってください。</li>
+<div class="container py-5">
+  <div class="text-success"><%= flash[:notice] %></div>
+  <div class="text-danger"><%= flash[:alret] %></div>
+  <h2 class="col-lg-4 bg-light text-center">おすすめの居酒屋</h2>
+  <div class="row py-3">
+    <% @stores.each do |store| %>
+      <div class="col-lg-2 text-center mx-auto mb-4 py-2">
+        <%= link_to store_path(store.id), class: "text-decoration-none text-dark" do %>
+          <%= image_tag store.get_image, size: "150x150" %><br>
+          <%= store.name %><br>
+          <%= store.seat_status %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="d-flex align-items-end mb-4">
+      <%= link_to "すべての居酒屋を見る", stores_path %>
     </div>
-    <div class="col-lg-8 py-3">
-      <h5 class="col-lg-5 bg-light text-center">※居酒屋情報を登録の方</h5>
-      <li>居酒屋の店舗登録を行いたい店舗は<%= link_to "こちら",new_store_registration_path %>から新規登録を行ってください。</li>
-      <li>居酒屋のログインは<%= link_to "こちら",store_session_path %>からログインを行ってください。</li>
+    <div class="col-lg-12 pb-5">
+      <table class="table table-responsive-sm text-nowrap border">
+        <tr>
+          <td><h5>ジャンル検索</h5></td>
+        </tr>
+          <!--タグ検索　チェックボックス-->
+          <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
+            <tr>
+              <% @tag.each do |t| %>
+                <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
+              <% end %>
+              <td><%= submit_tag '検索' %></td>
+            </tr>
+          <% end %>
+      </table>
+      <!--絞り込み検索　空席情報、禁煙・喫煙情報　プルダウン-->
+      <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
+        <%= select_tag(:seat_status, options_for_select([["空きわずか"],["空きあり"],["空き無し"]]), include_blank: "選択") %>
+        <%= select_tag(:smoke_status, options_for_select([["禁煙"],["喫煙"]]), include_blank: "選択") %>
+        <%= submit_tag '絞り込み' %>
+      <% end %>
     </div>
   </div>
-<% end %>
+  <% if !admin_signed_in? && !store_signed_in? && !customer_signed_in? %>
+    <div class="row my-5 mb-5">
+      <div class="col-lg-9">
+        <h5 class="col-lg-8 bg-light text-center">※ログインされていないと閲覧できません。</h5>
+        <li>ゲストログインは<%= link_to "こちら",public_guest_sign_in_path, method: :post %>からログインを行ってください。(閲覧のみ可 ※レビュー,コメントは投稿できません)</li>
+        <li>会員登録は<%= link_to "こちら",new_customer_registration_path %>から新規登録を行ってください。</li>
+        <li>ログインは<%= link_to "こちら",new_customer_session_path %>からログインを行ってください。</li>
+      </div>
+      <div class="col-lg-8 py-3">
+        <h5 class="col-lg-5 bg-light text-center">※居酒屋情報を登録の方</h5>
+        <li>居酒屋の店舗登録を行いたい店舗は<%= link_to "こちら",new_store_registration_path %>から新規登録を行ってください。</li>
+        <li>居酒屋のログインは<%= link_to "こちら",store_session_path %>からログインを行ってください。</li>
+      </div>
+    </div>
+  <% end %>

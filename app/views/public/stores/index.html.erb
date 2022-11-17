@@ -2,11 +2,11 @@
   <div class="col-lg-4">
     <%= render 'public/stores/sidebar', tags: @tags %>
   </div>
-  <div class="col-lg-8">
+  <div class="col-lg-8 mt-3 mb-5">
     <h2 class="col-lg-4 bg-light text-center">居酒屋一覧</h2>
     <% @stores.each do |store| %>
       <%= link_to store_path(store.id), class: "text-decoration-none" do %>
-      <table class="table-sm table-responsive-sm table-warning text-nowrap text-dark border my-4">
+      <table class="table-sm table-responsive-sm table-warning text-nowrap text-dark my-4 rounded">
         <tr>
           <th><%= image_tag store.get_image, size: "200x200" %></th>
           <th class="text-right">

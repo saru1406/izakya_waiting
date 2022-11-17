@@ -2,9 +2,9 @@
   <div class="col-lg-4">
     <%= render 'public/stores/sidebar', tags: @tags %>
   </div>
-  <div class="col-lg-8">
-    <h2 class="col-lg-7 bg-light text-center"><%= @store.name %>詳細</h2>
-    <table class="table-sm table-responsive-sm text-nowrap table-warning border">
+  <div class="col-lg-8 mb-5">
+    <h2 class="col-lg-7 bg-light text-center mt-3"><%= @store.name %>詳細</h2>
+    <table class="table-sm table-responsive-sm text-nowrap table-warning rounded">
       <tr>
         <th><%= image_tag @store.get_image, size: "250x250" %></th>
         <th class="text-right">
@@ -41,7 +41,7 @@
     </div>
     <h3 class="col-lg-3 bg-light text-center">レビュー</h3>
     <% @reviews.each do |review| %>
-      <table class="border border-warning mt-4">
+      <table class="border border-warning rounded mt-4">
         <tr>
           <td>
             <!-- 評価 -->
