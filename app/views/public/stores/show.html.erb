@@ -3,7 +3,7 @@
     <%= render 'public/stores/sidebar', tags: @tags %>
   </div>
   <div class="col-lg-8 mb-5">
-    <h2 class="col-lg-7 bg-light text-center mt-3"><%= @store.name %>詳細</h2>
+    <h2 class="col-lg-10 bg-light text-center mt-3"><%= @store.name %>詳細</h2>
     <table class="table-sm table-responsive-sm text-nowrap table-warning border">
       <tr>
         <th><%= image_tag @store.get_image, size: "250x250" %></th>
