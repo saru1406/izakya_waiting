@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-lg-2"></div>
-  <h3 class="col-lg-3 col-6 bg-light text-center mt-3">レビュー</h3>
   <div class="col-lg-8 pb-3 mt-3 mx-auto">
+    <div class="text-success"><%= flash[:notice] %></div>
+    <h3 class="bg-light px-3 my-3 d-inline-block">レビュー</h3>
     <table class="border border-warning">
       <tr>
         <td><!-- 評価 -->
@@ -52,9 +52,8 @@
   </div>
 </div>
 <div class="row pb-5">
-  <div class="col-lg-2"></div>
-  <h3 class="col-lg-3 col-6 bg-light text-center p-2">コメント</h3>
-  <div class="review-comments-index col-lg-9 pb-5 mx-auto">
+  <div class="review-comments-index col-lg-8 pb-5 mx-auto">
+    <h3 class="bg-light px-3 my-3 d-inline-block">コメント</h3>
     <%= render 'public/review_comments/comment_index', review_comments: @review_comments %>
   </div>
 </div>
@@ -62,9 +61,8 @@
 <div class="row">
   <div class="col-lg-8 pb-5 mx-auto">
     <h3 class="col-lg-6 bg-light text-center ">コメントを投稿する</h3>
-    <div class="col-lg-12">
       <%= render 'public/review_comments/form', store: @store, review: @review, review_comment: @review_comment %>
-    </div>
+    
   </div>
 </div>
 <% end %>

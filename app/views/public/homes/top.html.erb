@@ -1,6 +1,6 @@
 </div>
 <div class="bg-dark text-white">
-  <%= image_tag('bar2.jpg',class: "w-100") %>
+  <%= image_tag('bar2.jpg', class: "w-100") %>
   <div class="img-body text-center py-3">
     <h5>居酒屋Waiting</h5>
     <p>居酒屋の席情報が分かるレビューサイト</p>
@@ -9,10 +9,10 @@
 <div class="container py-5">
   <div class="text-success"><%= flash[:notice] %></div>
   <div class="text-danger"><%= flash[:alret] %></div>
-  <h2 class="col-lg-4 bg-light text-center">おすすめの居酒屋</h2>
+  <h2 class="bg-light px-3 my-3 d-inline-block">おすすめの居酒屋</h2>
   <div class="row py-3">
     <% @stores.each do |store| %>
-      <div class="col-lg-2 border border-dark rounded-lg text-center mx-auto mb-4 py-2">
+      <div class="col-lg-2 col-6 border border-dark rounded-lg text-center mx-auto mb-4 py-2">
         <%= link_to store_path(store.id), class: "text-decoration-none text-dark" do %>
           <%= image_tag store.get_image, size: "150x150" %><br>
           <%= store.name %><br>

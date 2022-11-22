@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-8 mx-auto mb-5">
-    <h3 class="bg-light border px-3 my-3 d-inline-block">お気に入り一覧</h3>
+    <h3 class="bg-light px-3 my-3 d-inline-block">お気に入り一覧</h3>
     <% @bookmarks.each do |bookmark| %>
       <%= link_to store_path(bookmark.store_id), class: "text-decoration-none" do %>
         <table class="table-sm  table-warning table-responsive-sm border text-nowrap text-dark my-4">

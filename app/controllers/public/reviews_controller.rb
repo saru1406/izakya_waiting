@@ -8,8 +8,10 @@ class Public::ReviewsController < ApplicationController
     @review.customer_id = @customer.id
     @review.store_id = @store.id
     if @review.save
+      flash[:notice] = "レビューを投稿しました。"
       redirect_to store_path(@store.id)
     else
+      flash[:alret] = "項目を全て記入してください。"
       @tags = Tag.all
       @reviews = Review.all
       render :'public/stores/show'
@@ -19,12 +21,14 @@ class Public::ReviewsController < ApplicationController
   def update
     review = Review.find(params[:id])
     if review.update(review_params)
-      store = Store.find(params[:store_id])
-      redirect_to store_path(store.id)
+      @store = Store.find(params[:store_id])
+      flash[:notice] = "レビューを更新しました。"
+      redirect_to store_review_path(@store,review.id)
     else
-      @store = Store.find(params[:id])
-      @reviews = Review.all
-      render :"store/show"
+      @store = Store.find(params[:store_id])
+      @review = Review.find(params[:id])
+      flash[:alret] = "項目を全て記入してください。"
+      render :"public/reviews/edit"
     end
   end
 

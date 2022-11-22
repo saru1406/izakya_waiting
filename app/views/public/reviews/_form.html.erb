@@ -19,7 +19,7 @@
       </script>
     </tr>
     <tr>
-      <td><%= f.file_field :review_image, multiple: true %></td>
+      <td><%= f.file_field :review_image, accept: "image/*", multiple: true %></td>
     </tr>
     <tr>
       <td><%= f.text_field :title, placeholder: "タイトル", size: "45" %></td>

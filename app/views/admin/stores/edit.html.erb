@@ -1,5 +1,5 @@
-<h3 class="bg-light border px-3 my-3 d-inline-block">店舗情報編集</h3>
 <div class="text-danger"><%= flash[:alret] %></div>
+<h3 class="bg-light px-3 my-3 d-inline-block">店舗情報編集</h3>
 <%= form_with model: @store, url: admin_store_path, method: :patch do |f| %>
   <table class="table table-responsive-sm table-borderless text-nowrap">
     <tr>
