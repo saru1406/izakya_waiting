@@ -1,11 +1,11 @@
 class Public::StoresController < ApplicationController
   before_action :authenticate_customer!
+  before_action :search
 
   def index
     #掲載情報を公開のみ一覧に表示
-    @stores = Store.published
+    @stores = @q.result(distinct: true).published
     @tags = Tag.all
-    #サイドバーのタグ検索
     if params[:tag_ids]
       @stores = []
       params[:tag_ids].each do |key, value|
@@ -25,8 +25,7 @@ class Public::StoresController < ApplicationController
 
   def search
     #絞り込み機能　空席情報、禁煙・喫煙
-    @tags = Tag.all
-    @stores = Store.where('seat_status LIKE(?) and smoke_status LIKE(?)', "%#{params[:seat_status]}%","%#{params[:smoke_status]}%")
-    render :index
+    @q = Store.ransack(params[:q])
+
   end
 end

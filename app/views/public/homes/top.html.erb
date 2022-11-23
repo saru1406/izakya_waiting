@@ -23,28 +23,6 @@
     <div class="d-flex align-items-end mb-4">
       <%= link_to "すべての居酒屋を見る", stores_path %>
     </div>
-    <div class="col-lg-12 pb-5">
-      <table class="table table table-responsive-sm text-nowrap border">
-        <tr>
-          <td><h5>ジャンル検索</h5></td>
-        </tr>
-          <!--タグ検索　チェックボックス-->
-          <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-            <tr>
-              <% @tag.each do |t| %>
-                <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
-              <% end %>
-              <td><%= submit_tag '検索' %></td>
-            </tr>
-          <% end %>
-      </table>
-      <!--絞り込み検索　空席情報、禁煙・喫煙情報　プルダウン-->
-      <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-        <%= select_tag(:seat_status, options_for_select([["空きわずか"],["空きあり"],["空き無し"]]), include_blank: "選択") %>
-        <%= select_tag(:smoke_status, options_for_select([["禁煙"],["喫煙"]]), include_blank: "選択") %>
-        <%= submit_tag '絞り込み' %>
-      <% end %>
-    </div>
   </div>
   <% if !admin_signed_in? && !store_signed_in? && !customer_signed_in? %>
     <div class="row my-5 mb-5">

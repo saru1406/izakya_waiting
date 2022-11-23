@@ -1,24 +1,30 @@
-<div class="sticky-top py-4">
-  <table class="table border">
-    <tr>
-      <th><h4>ジャンル検索</h4></th>
-    </tr>
-    <!--タグ検索　チェックボックス-->
-    <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-      <% tags.each do |t| %>
-        <tr>
-          <td><li><%= check_box :tag_ids, t.name %><%= t.name %></li></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td><%= submit_tag '検索' %></td>
-      </tr>
+<div class="sticky-top p-4 bg-light border border-dark ">
+  <h5 class="bg-light px-3 border border-dark my-1 d-inline-block">ジャンル検索</h5>
+  <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
+    <% @tags.each do |t| %>
+    <ul>
+      <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+    </ul>
     <% end %>
-  </table>
-  <!--絞り込み検索　空席情報、禁煙・喫煙情報　プルダウン-->
-  <%= form_tag(search_path, method: "get") do %>
-    <%= select_tag(:seat_status, options_for_select([["空きわずか"],["空きあり"],["空き無し"]]), include_blank: "選択") %>
-    <%= select_tag(:smoke_status, options_for_select([["禁煙"],["喫煙"]]), include_blank: "選択") %>
-    <%= submit_tag '絞り込み' %>
+    <%= submit_tag '検索' %>
+  <% end %>
+  <%= search_form_for @q do |f| %>
+    <h5 class="bg-light px-3 border border-dark mt-3 d-inline-block">絞り込み検索</h5>
+    <ul>
+      <li class="pb-3">
+        <p>禁煙・喫煙</p>
+        <%= f.select(:smoke_status_eq, options_for_select([["禁煙"],["喫煙"]]), include_blank: "選択") %>
+      </li>
+      <li class="pb-3">
+        <p>席情報</p>
+        <%= f.select(:seat_status_eq, options_for_select([["空きわずか"],["空きあり"],["空き無し"]]), include_blank: "選択") %>
+      </li>
+      <li class="pb-3">
+        <p>予算</p>
+        ￥<%= f.select(:budget_min_gteq, options_for_select([["1000"],["2000"],["3000"],["4000"],["5000"]]), include_blank: "選択") %> 〜
+        ￥<%= f.select(:budget_max_lteq, options_for_select([["1000"],["2000"],["3000"],["4000"],["5000"]]), include_blank: "選択") %>円
+      </li>
+      <%= f.submit '検索する' %>
+    </ul>
   <% end %>
 </div>
