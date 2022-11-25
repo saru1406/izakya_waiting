@@ -2,9 +2,9 @@
   <h5 class="bg-light px-3 border border-dark my-1 d-inline-block">ジャンル検索</h5>
   <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
     <% @tags.each do |t| %>
-    <ul>
-      <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
-    </ul>
+      <ul>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+      </ul>
     <% end %>
     <%= submit_tag '検索' %>
   <% end %>
@@ -21,7 +21,7 @@
       </li>
       <li class="pb-3">
         <p>予算</p>
-        ￥<%= f.select(:budget_min_gteq, options_for_select([["1000"],["2000"],["3000"],["4000"],["5000"]]), include_blank: "選択") %> 〜
+        ￥<%= f.select(:budget_min_gteq, options_for_select([["1000"],["2000"],["3000"],["4000"],["5000"]]), include_blank: "選択") %>円 〜
         ￥<%= f.select(:budget_max_lteq, options_for_select([["1000"],["2000"],["3000"],["4000"],["5000"]]), include_blank: "選択") %>円
       </li>
       <%= f.submit '検索する' %>

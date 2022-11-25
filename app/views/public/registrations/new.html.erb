@@ -7,32 +7,32 @@
       </div>
     </div>
     <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer' do |f| %>
-    <table class="table table-borderless text-nowrap">
-      <tr>
-        <th>ニックネーム</th>
-        <td><%= f.text_field :name, autofocus: true, placeholder: "ニックネーム" %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></td>
-      </tr>
-      <tr>
-        <th>
-          <%= f.label :"パスワード" %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %>文字以上)</em>
-          <% end %><br />
-        </th>
-        <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-      </tr>
-      <tr>
-        <th>パスワード(確認用)</th>
-        <td><%= f.password_field :password_confirmation %></td>
-      </tr>
-    </table>
-    <div class="actions m-4 text-center">
-      <%= f.submit "新規登録", class: "btn btn-success" %>
-    </div>
+      <table class="table table-borderless text-nowrap">
+        <tr>
+          <th>ニックネーム</th>
+          <td><%= f.text_field :name, autofocus: true, placeholder: "ニックネーム" %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.label :"パスワード" %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %>文字以上)</em>
+            <% end %><br />
+          </th>
+          <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <th>パスワード(確認用)</th>
+          <td><%= f.password_field :password_confirmation %></td>
+        </tr>
+      </table>
+      <div class="actions m-4 text-center">
+        <%= f.submit "新規登録", class: "btn btn-success" %>
+      </div>
     <% end %>
     <h5 class="col-lg-4 text-center bg-light">既に登録済みの方</h5>
     <p class="col-lg-7"><%= render "public/shared/links" %>からログインしてください</p>

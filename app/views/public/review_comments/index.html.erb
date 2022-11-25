@@ -3,12 +3,16 @@
     <h3 class="bg-light px-3 my-3 d-inline-block">会員コメント投稿一覧</h3>
     <table class="table table-hover">
       <thead>
-      <th>コメント</th>
+        <th>コメント</th>
       </thead>
       <tbody>
         <% @review_comments.each do |review_comment| %>
           <tr>
-            <td><%= link_to review_comment.comment, store_review_path(review_comment.store_id,review_comment.review_id) %></td>
+            <td>
+              <%= link_to store_review_path(review_comment.store_id,review_comment.review_id), class: "text-decoration-none" do %>
+                <%= safe_join(review_comment.comment.split("\n"),tag(:br))%>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

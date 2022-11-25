@@ -7,19 +7,19 @@
       </div>
     </div>
     <%= form_with model: @store, url: store_session_path do |f| %>
-    <table class="table table-borderless text-nowrap">
-      <tr>
-        <th> <%= f.label :"メールアドレス" %></th>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"パスワード" %></th>
-        <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-      </tr>
-    </table>
-    <div class="actions m-4 text-center">
-      <%= f.submit "ログイン", class: "btn btn-success" %>
-    </div>
+      <table class="table table-borderless text-nowrap">
+        <tr>
+          <th> <%= f.label :"メールアドレス" %></th>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :"パスワード" %></th>
+          <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+        </tr>
+      </table>
+      <div class="actions m-4 text-center">
+        <%= f.submit "ログイン", class: "btn btn-success" %>
+      </div>
     <% end %>
     <h5 class="col-5 bg-light">店舗登録がお済みでない方</h5>
     <p class="col-7"><%= render "public/shared/links" %>から新規登録を行なってください</p>

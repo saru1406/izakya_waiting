@@ -1,15 +1,16 @@
-    <table class="table table-hover">
-      <% review_comments.each do |review_comment| %>
-      <tr>
-        <td><%=safe_join(review_comment.comment.split("\n"),tag(:br))%></td>
-        <td class="text-right">
-          <%= review_comment.customer.name %><br>
-          <%= review_comment.created_at.strftime('%Y/%m/%d') %>
-        </td>
-        <td>
-          <% if review_comment.customer == current_customer %>
-          <%= link_to '削除', store_review_review_comment_path(review_comment.store,review_comment.review,review_comment),class: "btn btn-sm btn-danger", method: :delete, remote: true %></td>
+<table class="table table-hover">
+  <% review_comments.each do |review_comment| %>
+    <tr>
+      <td><%=safe_join(review_comment.comment.split("\n"),tag(:br))%></td>
+      <td class="text-right">
+        <%= review_comment.customer.name %><br>
+        <%= review_comment.created_at.strftime('%Y/%m/%d') %>
+      </td>
+      <td class="text-nowrap">
+        <% if review_comment.customer == current_customer %>
+          <%= link_to '削除', store_review_review_comment_path(review_comment.store,review_comment.review,review_comment),class: "btn btn-sm btn-danger", method: :delete, remote: true %>
         <% end %>
-        <% end %>
-      </tr>
-    </table>
+      </td>
+    </tr>
+  <% end %>
+</table>

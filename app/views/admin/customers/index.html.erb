@@ -7,10 +7,10 @@
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
-    <tr>
-      <td><%= customer.id %></td>
-      <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
-    </tr>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

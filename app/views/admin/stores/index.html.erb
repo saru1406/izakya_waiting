@@ -7,17 +7,17 @@
   </thead>
   <tbody>
     <% @stores.each do |store| %>
-    <tr>
-      <td><%= store.id %></td>
-      <td><%= link_to store.name, admin_store_path(store.id) %></td>
-      <td>
-      <% if store.is_published %>
-				<div class="text-success fw-bold">公開</div>
-			<% else %>
-				<div class="text-danger fw-bold">非公開</div>
-			<% end %>
-		</td>
-    </tr>
+      <tr>
+        <td><%= store.id %></td>
+        <td><%= link_to store.name, admin_store_path(store.id) %></td>
+        <td>
+          <% if store.is_published %>
+            <div class="text-success fw-bold">公開</div>
+          <% else %>
+            <div class="text-danger fw-bold">非公開</div>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>

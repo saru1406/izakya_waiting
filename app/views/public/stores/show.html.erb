@@ -36,9 +36,11 @@
               <p>￥<%= @store.budget_min %>円~￥<%= @store.budget_max %>円</p>
               <p><%= @store.address %></p>
               <p><%= @store.telephone_number %></p>
-              <p><% @store.tags.each do |tag| %>
-              ・<%= tag.name %>
-              <% end %></p>
+              <p>
+                <% @store.tags.each do |tag| %>
+                ・<%= tag.name %>
+                <% end %>
+              </p>
               <p><%= @store.seat_status %></p>
               <p><%= @store.business_hours %></p>
               <p><%= @store.regular_holiday %></p>
@@ -50,7 +52,7 @@
       </div>
     </div>
     <div class="bookmark<%= @store.id %> my-4">
-    <%= render 'public/bookmarks/bookmark', store: @store, customer: @customer %>
+      <%= render 'public/bookmarks/bookmark', store: @store, customer: @customer %>
     </div>
     <h3 class="col-lg-3 bg-light text-center">レビュー</h3>
     <% @reviews.each do |review| %>
@@ -73,15 +75,13 @@
         <tr>
           <!--コメントが100文字以上なら<もっと見る>を表示し、詳細リンク追加-->
           <%if review.body.length > 100 %>
-          <td>
-            <%=safe_join(review.body.truncate(100).split("\n"),tag(:br))%>
-            <%= link_to "<もっと見る>", store_review_path(@store,review.id) %>
-          </td>
+            <td>
+              <%=safe_join(review.body.truncate(100).split("\n"),tag(:br))%>
+              <%= link_to "<もっと見る>", store_review_path(@store,review.id) %>
+            </td>
           <!--コメントが100文字以下なら全文表示-->
           <% else %>
-          <td>
-            <%=safe_join(review.body.split("\n"),tag(:br))%>
-          </td>
+            <td><%=safe_join(review.body.split("\n"),tag(:br))%></td>
           <% end %>
           <tr>
             <% if review.review_image.attached? %>

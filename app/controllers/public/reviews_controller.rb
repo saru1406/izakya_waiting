@@ -19,14 +19,13 @@ class Public::ReviewsController < ApplicationController
   end
 
   def update
-    review = Review.find(params[:id])
-    if review.update(review_params)
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
       @store = Store.find(params[:store_id])
       flash[:notice] = "レビューを更新しました。"
-      redirect_to store_review_path(@store,review.id)
+      redirect_to store_review_path(@store,@review)
     else
       @store = Store.find(params[:store_id])
-      @review = Review.find(params[:id])
       flash[:alret] = "項目を全て記入してください。"
       render :"public/reviews/edit"
     end
