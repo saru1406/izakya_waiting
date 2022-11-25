@@ -10,6 +10,7 @@ class Admin::StoresController < ApplicationController
 
   def edit
     @store = Store.find(params[:id])
+    @tags = Tag.all
   end
 
   def update

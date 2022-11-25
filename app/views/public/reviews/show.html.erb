@@ -1,45 +1,33 @@
 <div class="row">
+  <div class="col-lg-4 mt-3">
+    <%= render 'public/stores/sidebar', tags: @tags %>
+  </div>
   <div class="col-lg-8 pb-3 mt-3 mx-auto">
     <div class="text-success"><%= flash[:notice] %></div>
     <h3 class="bg-light px-3 my-3 d-inline-block">レビュー</h3>
-    <table class="border border-warning">
+    <table class="col-lg-12 border border-warning shadow-sm">
       <tr>
-        <td><!-- 評価 -->
-          <div id="star-rate<%= @review.id%>"></div>
-        </td>
-        <!-- 評価javascript -->
-        <script>
-          $('#star-rate<%= @review.id%>').empty();
-          $('#star-rate<%= @review.id%>').raty({
-          size      : 36,
-          starOff   : '<%= asset_path('star-off.png') %>',
-          starOn    : '<%= asset_path('star-on.png') %>',
-          starHalf  : '<%= asset_path('star-half.png') %>',
-          half      : true,
-          readOnly: true,
-          score: <%= @review.star %>,
-          });
-        </script>
+        <%= render 'public/reviews/review.star', review: @review %>
       </tr>
       <tr>
         <td class="text-right pr-3">
           <div class="favorite<%= @review.id %>">
             <%= render 'public/favorites/favorite', store: @store, review: @review, customer: @customer %>
           </div>
-          投稿者:<%= @review.customer.name %>
-          投稿日:<%= @review.created_at.strftime('%Y/%m/%d') %>
+          <p>投稿者:<%= @review.customer.name %>
+          投稿日:<%= @review.created_at.strftime('%Y/%m/%d') %></p>
         </td>
       <tr>
-        <th style="width: 1%"><%= @review.title %></th>
+        <th><%= @review.title %></th>
       </tr>
       <tr>
-        <td style="width: 1%"><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
+        <td><%= safe_join(@review.body.split("\n"),tag(:br))%></td>
       </tr>
       <tr>
         <% if @review.review_image.attached? %>
           <td>
             <% @review.review_image.each do |review_image| %>
-            <%= image_tag review_image, size: "120x120" %>
+              <%= image_tag review_image, size: "120x120" %>
             <% end %>
           </td>
         <% end %>
@@ -49,20 +37,17 @@
       <%= link_to '編集する', edit_store_review_path(@review.store_id,@review.id), class: 'btn btn-success mt-3' %>
       <%= link_to '削除する', store_review_path(@review.store_id,@review.id), class: 'btn btn-danger mt-3', method: :delete %>
     <% end %>
+    <div class="col-lg-12 mt-3">
+      <h3 class="bg-light px-3 my-3 d-inline-block">コメント</h3>
+      <div class="review-comments-index pb-5">
+        <%= render 'public/review_comments/comment_index', review_comments: @review_comments %>
+      </div>
+      <% if @customer.name != "guestuser" %>
+        <div class="mx-auto pb-5">
+          <h3 class="bg-light px-3 my-3 d-inline-block">コメントを投稿する</h3>
+          <%= render 'public/review_comments/form', store: @store, review: @review, review_comment: @review_comment %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-<div class="row pb-5">
-  <div class="review-comments-index col-lg-8 pb-5 mx-auto">
-    <h3 class="bg-light px-3 my-3 d-inline-block">コメント</h3>
-    <%= render 'public/review_comments/comment_index', review_comments: @review_comments %>
-  </div>
-</div>
-<% if @customer.name != "guestuser" %>
-<div class="row">
-  <div class="col-lg-8 pb-5 mx-auto">
-    <h3 class="col-lg-6 bg-light text-center ">コメントを投稿する</h3>
-      <%= render 'public/review_comments/form', store: @store, review: @review, review_comment: @review_comment %>
-    
-  </div>
-</div>
-<% end %>

@@ -27,8 +27,14 @@ class Store < ApplicationRecord
          scope :published, -> {where(is_published: true)}
          scope :unpublished, -> {where(is_published: false)}
 
+
+
           def get_image
-            (image.attached?) ? image : 'no.image.jpeg'
+            unless image.attached?
+              file_path = Rails.root.join('app/assets/images/no.image.jpeg')
+              image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+            end
+            image
           end
 
           def bookmarked_by?(customer)

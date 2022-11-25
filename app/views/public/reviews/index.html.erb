@@ -10,19 +10,7 @@
       <tbody>
         <% @reviews.each do |review| %>
           <tr>
-            <td><div id="star-rate<%= review.id%>"></td></div>
-              <script>
-                $('#star-rate<%= review.id%>').empty();
-                $('#star-rate<%= review.id%>').raty({
-                size      : 36,
-                starOff   : '<%= asset_path('star-off.png') %>',
-                starOn    : '<%= asset_path('star-on.png') %>',
-                starHalf  : '<%= asset_path('star-half.png') %>',
-                half      : true,
-                readOnly: true,
-                score: <%= review.star %>,
-                });
-              </script>
+            <%= render 'public/reviews/review.star', review: review %>
             <td><%= link_to review.title, store_review_path(review.store_id,review.id) %></td>
             <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
           </tr>

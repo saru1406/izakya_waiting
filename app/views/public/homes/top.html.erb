@@ -6,17 +6,23 @@
     <p>居酒屋の席情報が分かるレビューサイト</p>
   </div>
 </div>
-<div class="container py-5">
+<div class="container my-3">
   <div class="text-success"><%= flash[:notice] %></div>
   <div class="text-danger"><%= flash[:alret] %></div>
   <h2 class="bg-light px-3 my-3 d-inline-block">おすすめの居酒屋</h2>
-  <div class="row py-3">
+  <div class="row pb-5">
     <% @stores.each do |store| %>
-      <div class="col-lg-2 col-6 border border-dark rounded-lg text-center mx-auto mb-4 py-2">
+      <div class="col-lg-2 col-6 pb-3 px-1">
         <%= link_to store_path(store.id), class: "text-decoration-none text-dark" do %>
-          <%= image_tag store.get_image, size: "150x150" %><br>
-          <%= store.name %><br>
-          <%= store.seat_status %>
+          <div class="card p-3 shadow" style="width: 100%;">
+            <%= image_tag store.get_image, size: "150x150" %>
+            <div class="card-body px-0">
+              <div class="card-text text-center">
+                <p><%= store.name %></p>
+                <p><%= store.seat_status %></p>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
     <% end %>

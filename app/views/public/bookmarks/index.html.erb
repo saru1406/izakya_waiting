@@ -3,30 +3,7 @@
     <h3 class="bg-light px-3 my-3 d-inline-block">お気に入り一覧</h3>
     <% @bookmarks.each do |bookmark| %>
       <%= link_to store_path(bookmark.store_id), class: "text-decoration-none" do %>
-        <table class="table-sm  table-warning table-responsive-sm border text-nowrap text-dark my-4">
-          <tr>
-            <th><%= image_tag bookmark.store.get_image, size: "200x200" %></th>
-            <th class="text-right">
-              店舗名:<br>
-              予算:<br>
-              空席情報:<br>
-              営業時間:<br>
-              定休日:<br>
-              禁煙・喫煙:<br>
-              レビュー数:
-            </th>
-            <td></td>
-            <td style="width: 55%">
-              <%= bookmark.store.name %><br>
-              ￥<%= bookmark.store.budget_min %>円~￥<%= bookmark.store.budget_max %>円<br>
-              <%= bookmark.store.seat_status %><br>
-              <%= bookmark.store.business_hours %><br>
-              <%= bookmark.store.regular_holiday %><br>
-              <%= bookmark.store.smoke_status %><br>
-              <%= bookmark.store.reviews.count %>
-            </td>
-          </tr>
-        </table>
+        <%= render 'public/stores/store.list', store: bookmark.store %>
       <% end %>
     <% end %>
   </div>

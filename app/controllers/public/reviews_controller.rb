@@ -43,6 +43,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review_comments = @review.review_comments.all
     @review_comment =ReviewComment.new
+    @tags = Tag.all
   end
 
   def edit

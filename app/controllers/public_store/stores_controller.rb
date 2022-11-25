@@ -7,6 +7,7 @@ class PublicStore::StoresController < ApplicationController
 
   def edit
     @store = current_store
+    @tags = Tag.all
   end
 
   def update

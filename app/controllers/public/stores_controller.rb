@@ -1,6 +1,5 @@
 class Public::StoresController < ApplicationController
   before_action :authenticate_customer!
-  before_action :search
 
   def index
     #掲載情報を公開のみ一覧に表示
@@ -21,11 +20,5 @@ class Public::StoresController < ApplicationController
     @reviews = @store.reviews.all
     @customer = current_customer
     @tags = Tag.all
-  end
-
-  def search
-    #絞り込み機能　空席情報、禁煙・喫煙
-    @q = Store.ransack(params[:q])
-
   end
 end

@@ -21,6 +21,8 @@ module IzakayaWaiting
 
     #app/config/locales/ja.ymlの読み込み
     config.i18n.default_locale = :ja
+    #config/locals配下にある全てのymlファイルを読み込む
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
 
   end
 end
