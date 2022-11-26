@@ -33,9 +33,6 @@ class Store < ApplicationRecord
          scope :star_avg, -> {eager_load(:reviews).group("stores.id").order("avg(reviews.star) desc")}
          scope :review_amount, -> {eager_load(:reviews).group("stores.id").order("count(store_id) desc")}
 
-
-
-
         def get_image
           unless image.attached?
             file_path = Rails.root.join('app/assets/images/no.image.jpeg')
