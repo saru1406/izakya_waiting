@@ -27,6 +27,13 @@ class Store < ApplicationRecord
          scope :published, -> {where(is_published: true)}
          scope :unpublished, -> {where(is_published: false)}
 
+         #居酒屋一覧　表示順変更
+         scope :latest, -> {order(created_at: :desc)}
+         scope :old, -> {order(created_at: :asc)}
+         scope :star_avg, -> {eager_load(:reviews).group("stores.id").order("avg(reviews.star) desc")}
+         scope :review_amount, -> {eager_load(:reviews).group("stores.id").order("count(store_id) desc")}
+
+
 
 
         def get_image

@@ -26,11 +26,11 @@ root to: 'public/homes#top'
 
 scope module: :public do
   get 'search' => 'stores#search'
+  resources :bookmarks, only: [:index]
+  resources :review_comments, only: [:index]
   resources :customers, only: [:show, :edit, :destroy, :update] do
     resources :reviews, only: [:index]
   end
-  resources :bookmarks, only: [:index]
-  resources :review_comments, only: [:index]
   resources :stores, only: [:index, :show] do
     resource :bookmarks, only: [:create, :destroy]
     resources :reviews, only: [:show, :create, :destroy, :edit, :update] do

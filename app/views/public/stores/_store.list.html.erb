@@ -32,18 +32,18 @@
           <p>
             <!--評価平均表示-->
             <div class="average-review-rating" data-score=<%= store.reviews.average(:star) %>></div>
-          <script>
-            $('.average-review-rating').empty();
-            $('.average-review-rating').raty({
-            readOnly: true,
-            starOn: "<%= asset_path('star-on.png') %>",
-            starOff: "<%= asset_path('star-off.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            score: function() {
-              return $(this).attr('data-score')
-            }
-            });
-          </script>
+            <script>
+              $('.average-review-rating').empty();
+              $('.average-review-rating').raty({
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: function() {
+                return $(this).attr('data-score')
+              }
+              });
+            </script>
           </p>
         </div>
       </div>

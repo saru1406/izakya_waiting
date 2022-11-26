@@ -4,6 +4,10 @@
   </div>
   <div class="col-lg-8">
     <h2 class="bg-light px-3 my-3 d-inline-block">居酒屋一覧</h2>
+    <%= link_to '新しい順', stores_path(latest: "true") %>
+    |<%= link_to '古い順', stores_path(old: "true") %>
+    |<%= link_to 'レビュー数順', stores_path(review_count: "true") %>
+    |<%= link_to '評価が高い順', stores_path(review_star: "true") %>
     <% @stores.each do |store| %>
       <%= link_to store_path(store.id), class: "text-decoration-none" do %>
         <%= render 'public/stores/store.list', store: store %>
