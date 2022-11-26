@@ -1,21 +1,39 @@
 <div class="row">
   <div class="col-lg-12 mb-5">
     <h3 class="bg-light px-3 my-3 d-inline-block">レビュー投稿一覧</h3>
-    <table class="table table-hover table-responsive-sm">
-      <thead class="text-nowrap">
-        <th>評価</th>
-        <th>タイトル</th>
-        <th>本文</th>
-      </thead>
-      <tbody>
-        <% @reviews.each do |review| %>
-          <tr>
-            <%= render 'public/reviews/review.star', review: review %>
-            <td><%= link_to review.title, store_review_path(review.store_id,review.id) %></td>
-            <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @reviews.each do |review| %>
+      <table class="col-lg-12 border border-warning shadow-sm mb-4">
+        <tr>
+          <td>
+            <%= link_to review.store.name, store_path(review.store_id) %>
+        </tr>
+        <tr>
+          <%= render 'public/reviews/review.star', review: review %>
+        </tr>
+        <tr>
+          <td class="text-right pr-3">
+            <div class="favorite<%= review.id %>">
+              <%= render 'public/favorites/favorite', store: review.store_id, review: review, customer: @customer %>
+            </div>
+            <p>投稿者:<%= review.customer.name %>
+            投稿日:<%= review.created_at.strftime('%Y/%m/%d') %></p>
+          </td>
+        <tr>
+          <th><%= review.title %></th>
+        </tr>
+        <tr>
+          <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
+        </tr>
+        <tr>
+          <% if review.review_image.attached? %>
+            <td>
+              <% review.review_image.each do |review_image| %>
+                <%= image_tag review_image, size: "120x120" %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+    <% end %>
   </div>
 </div>

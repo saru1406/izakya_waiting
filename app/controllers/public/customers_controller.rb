@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_guest_customer, only: [:edit]
 
   def show
     @customer = current_customer
@@ -14,7 +14,7 @@ class Public::CustomersController < ApplicationController
     customer = current_customer
     if customer.update(customer_params)
       flash[:notice] = "変更を保存しました。"
-      redirect_to customers_my_page_path
+      redirect_to customer_path
     else
       flash[:alret] = "項目を全て記入してください。"
       @customer = current_customer
@@ -34,11 +34,11 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:name)
   end
 
-  def ensure_guest_user
+  def ensure_guest_customer
     @customer = current_customer
     if @customer.name == "guestuser"
       flash[:alret] = 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-      redirect_to customers_my_page_path
+      redirect_to customer_path(current_customer)
     end
   end
 end

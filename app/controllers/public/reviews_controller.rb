@@ -32,7 +32,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @customer = current_customer
+    @customer = Customer.find(params[:customer_id])
     @reviews = @customer.reviews.all
   end
 
