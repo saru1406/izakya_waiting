@@ -16,6 +16,7 @@ class Public::StoresController < ApplicationController
       @stores = @q.result(distinct: true).published
     end
     @tags = Tag.all
+    #タグ
     if params[:tag_ids]
       @stores = []
       params[:tag_ids].each do |key, value|

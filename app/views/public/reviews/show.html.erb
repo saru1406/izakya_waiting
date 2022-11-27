@@ -41,7 +41,12 @@
     <div class="col-lg-12 col-12 mt-3">
       <h3 class="bg-light px-3 my-3 d-inline-block">コメント</h3>
       <div class="review-comments-index pb-5">
-        <%= render 'public/review_comments/comment_index', review_comments: @review_comments %>
+        <!--コメントがない場合"コメントがありません"の表示-->
+        <% if @review_comments.present? %>
+          <%= render 'public/review_comments/comment_index', review_comments: @review_comments %>
+        <% else %>
+        <h3 class="text-center">コメントはありません</h3>
+        <% end %>
       </div>
       <% if @customer.name != "guestuser" %>
         <div class="mx-auto pb-5">

@@ -11,7 +11,7 @@
       |<%= link_to 'レビュー数順', stores_path(review_count: "true") %>
       |<%= link_to '評価が高い順', stores_path(review_star: "true") %>
     </p>
-    <!--検索にヒットしない場合"検索にヒットしませんでした"の-->
+    <!--検索にヒットしない場合"検索にヒットしませんでした"の表示-->
     <% if @stores.present? %>
       <% @stores.each do |store| %>
         <%= link_to store_path(store.id), class: "text-decoration-none" do %>

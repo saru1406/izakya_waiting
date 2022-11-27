@@ -45,6 +45,7 @@
               <p><%= @store.address %></p>
               <p><%= @store.telephone_number %></p>
               <p>
+                <!--ジャンルがない場合"ジャンル登録されていません"の表示-->
                 <% if @store.tags.present? %>
                   <% @store.tags.each do |tag| %>
                     ・<%= tag.name %>
@@ -68,45 +69,50 @@
       <%= render 'public/bookmarks/bookmark', store: @store, customer: @customer %>
     </div>
     <h3 class="col-lg-3 bg-light text-center">レビュー</h3>
-    <% @reviews.each do |review| %>
-      <table class="col-lg-12 border border-warning rounded mt-4 px-3 shadow-sm">
-        <tr>
-          <%= render 'public/reviews/review.star', review: review %>
-        </tr>
-        <tr>
-          <td class="text-right pr-3">
-            <div class="favorite<%= review.id %>">
-              <%= render 'public/favorites/favorite', store: @store, review: review, customer: @customer %>
-            </div>
-            <p>
-              投稿者:<%= link_to review.customer.name, customer_reviews_path(review.customer.id) %>
-              投稿日:<%= review.created_at.strftime('%Y/%m/%d') %>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th><h5><%= link_to review.title, store_review_path(@store,review.id) %></h5></th>
-        </tr>
-        <tr>
-          <!--コメントが100文字以上なら<もっと見る>を表示し、詳細リンク追加-->
-          <%if review.body.length > 100 %>
-            <td>
-              <%=safe_join(review.body.truncate(100).split("\n"),tag(:br))%>
-              <%= link_to "<もっと見る>", store_review_path(@store,review.id) %>
+    <!--レビューがない場合"レビューがありません"の表示-->
+    <% if @reviews.present? %>
+      <% @reviews.each do |review| %>
+        <table class="col-lg-12 border border-warning rounded mt-4 px-3 shadow-sm">
+          <tr>
+            <%= render 'public/reviews/review.star', review: review %>
+          </tr>
+          <tr>
+            <td class="text-right pr-3">
+              <div class="favorite<%= review.id %>">
+                <%= render 'public/favorites/favorite', store: @store, review: review, customer: @customer %>
+              </div>
+              <p>
+                投稿者:<%= link_to review.customer.name, customer_reviews_path(review.customer.id) %>
+                投稿日:<%= review.created_at.strftime('%Y/%m/%d') %>
+              </p>
             </td>
-          <!--コメントが100文字以下なら全文表示-->
-          <% else %>
-            <td><%=safe_join(review.body.split("\n"),tag(:br))%></td>
-          <% end %>
-        </tr>
-        <tr>
-          <td>
-            <% review.review_image.each do |get_review_image| %>
-              <%= image_tag get_review_image, size: "120x120" %>
+          </tr>
+          <tr>
+            <th><h5><%= link_to review.title, store_review_path(@store,review.id) %></h5></th>
+          </tr>
+          <tr>
+            <!--コメントが100文字以上なら<もっと見る>を表示し、詳細リンク追加-->
+            <%if review.body.length > 100 %>
+              <td>
+                <%=safe_join(review.body.truncate(100).split("\n"),tag(:br))%>
+                <%= link_to "<もっと見る>", store_review_path(@store,review.id) %>
+              </td>
+            <!--コメントが100文字以下なら全文表示-->
+            <% else %>
+              <td><%=safe_join(review.body.split("\n"),tag(:br))%></td>
             <% end %>
-          </td>
-        </tr>
-      </table>
+          </tr>
+          <tr>
+            <td>
+              <% review.review_image.each do |get_review_image| %>
+                <%= image_tag get_review_image, size: "120x120" %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    <% else %>
+      <h3 class="text-center">レビューはありません</h3>
     <% end %>
     <% if @customer.name != "guestuser" %>
       <h3 class="col-lg-5 bg-light text-center mt-5">レビューを投稿する</h3>
