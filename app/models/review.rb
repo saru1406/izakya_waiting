@@ -11,6 +11,12 @@ class Review < ApplicationRecord
   validates :body,presence:true
   validates :star,presence:true
 
+  def get_review_image
+    if review_image.attached?
+    review_image
+    end
+  end
+
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end

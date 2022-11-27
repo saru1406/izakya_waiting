@@ -14,9 +14,12 @@
             <div class="favorite<%= review.id %>">
               <%= render 'public/favorites/favorite', store: review.store_id, review: review, customer: @customer %>
             </div>
-            <p>投稿者:<%= review.customer.name %>
-            投稿日:<%= review.created_at.strftime('%Y/%m/%d') %></p>
+            <p>
+              投稿者:<%= review.customer.name %>
+              投稿日:<%= review.created_at.strftime('%Y/%m/%d') %>
+            </p>
           </td>
+        </tr>
         <tr>
           <th><h5><%=link_to review.title, store_review_path(review.store_id,review.id) %></h5></th>
         </tr>
@@ -24,13 +27,11 @@
           <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
         </tr>
         <tr>
-          <% if review.review_image.attached? %>
-            <td>
-              <% review.review_image.each do |review_image| %>
-                <%= image_tag review_image, size: "120x120" %>
-              <% end %>
-            </td>
-          <% end %>
+          <td>
+            <% review.review_image.each do |get_review_image| %>
+              <%= image_tag get_review_image, size: "120x120" %>
+            <% end %>
+          </td>
         </tr>
       </table>
     <% end %>

@@ -4,8 +4,12 @@
     <td><%= f.text_field :name, autofocus: true, placeholder: "店舗名 ××店" %></td>
   </tr>
   <tr>
-    <th>画像</th>
+    <th>外装画像</th>
     <td><%= f.file_field :image, accept: "image/*" %></td>
+  </tr>
+  <tr>
+    <th>料理画像(最大3個)</th>
+    <td><%= f.file_field :cooking_image, accept: "image/*", multiple: true %></td>
   </tr>
   <tr>
     <th>予算</th>

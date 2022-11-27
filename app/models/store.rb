@@ -5,6 +5,7 @@ class Store < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_one_attached :image
+         has_many_attached :cooking_image
 
          has_many :reviews, dependent: :destroy
          has_many :review_comments, dependent: :destroy
@@ -33,12 +34,20 @@ class Store < ApplicationRecord
          scope :star_avg, -> {eager_load(:reviews).group("stores.id").order("avg(reviews.star) desc")}
          scope :review_amount, -> {eager_load(:reviews).group("stores.id").order("count(store_id) desc")}
 
-        def get_image
-          unless image.attached?
-            file_path = Rails.root.join('app/assets/images/no.image.jpeg')
-            image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-          end
+        def upload_default_image
+          file_path = Rails.root.join('app/assets/images/no_image.jpg')
+          image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+        end
+        
+        def get_cover_image
+          upload_default_image unless image.attached?
           image
+        end
+        
+        def get_cooking_image
+          if cooking_image.attached?
+          cooking_image
+          end
         end
 
         def bookmarked_by?(customer)
