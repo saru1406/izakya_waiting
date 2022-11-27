@@ -19,7 +19,7 @@ class Public::StoresController < ApplicationController
     if params[:tag_ids]
       @stores = []
       params[:tag_ids].each do |key, value|
-        @stores += Tag.find_by(name: key).stores if value == "1"
+        @stores += Tag.find_by(name: key).stores.published if value == "1"
       end
       @stores.uniq!
     end

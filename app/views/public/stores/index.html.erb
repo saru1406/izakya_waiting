@@ -11,10 +11,15 @@
       |<%= link_to 'レビュー数順', stores_path(review_count: "true") %>
       |<%= link_to '評価が高い順', stores_path(review_star: "true") %>
     </p>
-    <% @stores.each do |store| %>
-      <%= link_to store_path(store.id), class: "text-decoration-none" do %>
-        <%= render 'public/stores/store.list', store: store %>
+    <!--検索にヒットしない場合"検索にヒットしませんでした"の-->
+    <% if @stores.present? %>
+      <% @stores.each do |store| %>
+        <%= link_to store_path(store.id), class: "text-decoration-none" do %>
+          <%= render 'public/stores/store.list', store: store %>
+        <% end %>
       <% end %>
+    <% else %>
+      <h3 class="text-center">検索にヒットしませんでした</h3>
     <% end %>
   </div>
 </div>

@@ -12,7 +12,7 @@
           <div class="card-image">
             <%= image_tag @store.get_cover_image, class:"card-img"; %>
             <div class="row mt-3 mx-0">
-              <div class="col-lg-4 px-1">
+              <div class="col-lg-4 col-4 px-1">
                 <% @store.cooking_image.each do |get_cooking_image| %>
                   <%= image_tag get_cooking_image, class:"card-img"; %>
                 <% end %>
@@ -45,8 +45,12 @@
               <p><%= @store.address %></p>
               <p><%= @store.telephone_number %></p>
               <p>
-                <% @store.tags.each do |tag| %>
-                ・<%= tag.name %>
+                <% if @store.tags.present? %>
+                  <% @store.tags.each do |tag| %>
+                    ・<%= tag.name %>
+                  <% end %>
+                <% else %>
+                  ジャンル登録されていません
                 <% end %>
               </p>
               <p><%= @store.seat_status %></p>
