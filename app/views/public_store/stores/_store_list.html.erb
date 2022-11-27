@@ -5,17 +5,15 @@
   </tr>
   <tr>
     <th class="bg-light">外装画像</th>
-    <td><%= image_tag @store.get_image, size: "150x150" %></td>
+    <td><%= image_tag @store.get_cover_image, size: "150x150" %></td>
   </tr>
   <tr>
     <th class="bg-light">料理画像</th>
-    <% if store.cooking_image.attached? %>
       <td>
-        <% store.cooking_image.each do |cooking_image| %>
-          <%= image_tag cooking_image, size: "150x150" %>
+        <% store.cooking_image.each do |get_cooking_image| %>
+          <%= image_tag get_cooking_image, size: "150x150" %>
         <% end %>
       </td>
-    <% end %>
   </tr>
   <tr>
     <th class="bg-light">予算</th>
