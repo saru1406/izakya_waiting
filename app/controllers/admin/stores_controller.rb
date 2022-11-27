@@ -14,13 +14,13 @@ class Admin::StoresController < ApplicationController
   end
 
   def update
-    store = Store.find(params[:id])
-    if store.update(store_params)
+    @store = Store.find(params[:id])
+    if @store.update(store_params)
       flash[:notice] = "変更を保存しました。"
       redirect_to admin_store_path
     else
       flash[:alret] = "項目を全て記入してください。"
-      @store = Store.find(params[:id])
+      @tags = Tag.all
       render :edit
     end
   end
