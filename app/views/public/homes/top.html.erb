@@ -15,7 +15,7 @@
       <div class="col-lg-2 col-6 pb-3 px-1">
         <%= link_to store_path(store.id), class: "text-decoration-none text-dark" do %>
           <div class="card p-3 shadow" style="width: 100%;">
-            <%= image_tag store.get_image, size: "150x150" %>
+            <%= image_tag store.get_cover_image, class:"card-img" %>
             <div class="card-body px-0">
               <div class="card-text text-center">
                 <p><%= store.name %></p>

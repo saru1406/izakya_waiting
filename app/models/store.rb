@@ -35,7 +35,7 @@ class Store < ApplicationRecord
          scope :review_amount, -> {eager_load(:reviews).group("stores.id").order("count(store_id) desc")}
 
         def upload_default_image
-          file_path = Rails.root.join('app/assets/images/no_image.jpg')
+          file_path = Rails.root.join('app/assets/images/no.image.jpeg')
           image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
         end
         
