@@ -13,7 +13,7 @@ class Public::ReviewsController < ApplicationController
     else
       flash[:alret] = "項目を全て記入してください。"
       @tags = Tag.all
-      @reviews = Review.all
+      @reviews = @store.reviews.all
       render :'public/stores/show'
     end
   end
