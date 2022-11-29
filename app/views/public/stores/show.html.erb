@@ -79,7 +79,7 @@
           <tr>
             <td class="text-right pr-3">
               <div class="favorite<%= review.id %>">
-                <%= render 'public/favorites/favorite', store: @store, review: review, customer: @customer %>
+                <%= render 'public/favorites/favorite', store: @store, review: review %>
               </div>
               <p>
                 投稿者:<%= link_to review.customer.name, customer_reviews_path(review.customer.id) %>
