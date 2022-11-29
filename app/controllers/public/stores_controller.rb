@@ -2,17 +2,19 @@ class Public::StoresController < ApplicationController
   before_action :authenticate_customer!
 
   def index
+    #掲載情報を公開のみ一覧に表示
+    @store = Store.published
     #表示順分岐
     if params[:latest]
-      @stores = Store.latest
+      @stores = @store.latest
     elsif params[:old]
-      @stores = Store.old
+      @stores = @store.old
     elsif params[:review_count]
-      @stores = Store.review_amount
+      @stores = @store.review_amount
     elsif params[:review_star]
-      @stores = Store.star_avg
+      @stores = @store.star_avg
     else
-      #ransack検索、掲載情報を公開のみ一覧に表示
+      #ransack検索
       @stores = @q.result(distinct: true).published
     end
     @tags = Tag.all
