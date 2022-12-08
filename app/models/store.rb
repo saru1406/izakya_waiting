@@ -34,16 +34,20 @@ class Store < ApplicationRecord
          scope :star_avg, -> {eager_load(:reviews).group("stores.id").order("avg(reviews.star) desc")}
          scope :review_amount, -> {eager_load(:reviews).group("stores.id").order("count(store_id) desc")}
 
+         #addressから自動で緯度経度を代入
+         geocoded_by :address
+         after_validation :geocode, if: :address_changed?
+
         def upload_default_image
           file_path = Rails.root.join('app/assets/images/no.image.jpeg')
           image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
         end
-        
+
         def get_cover_image
           upload_default_image unless image.attached?
           image
         end
-        
+
         def get_cooking_image
           if cooking_image.attached?
           cooking_image
