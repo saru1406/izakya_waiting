@@ -12,6 +12,12 @@
   <%= render "layouts/header" %>
   <div class="container">
     <%= yield %>
+    <!--最上部へ戻るボタンを表示-->
+    <span id="back">
+      <a href="#">
+        <%= image_tag('arrow.png') %>
+      </a>
+    </span>
   </div>
   <footer class="bg-header border-top p-1 bg-dark fixed-bottom">
     <p class="my-1 mx-auto w-auto text-center text-light">- 居酒屋Waiting -</p>
