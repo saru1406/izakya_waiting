@@ -17,6 +17,8 @@
 空いている居酒屋を探しているとき
 
 ## 設計書
+ER図<br>
+![ポートフォリオER図](https://user-images.githubusercontent.com/110827986/206969721-e940d77a-ad17-4a75-8174-741bd0286247.png)
 
 
 ## 開発環境
