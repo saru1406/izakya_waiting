@@ -19,15 +19,15 @@
 }
 
 .image1 {
-  background-image: url(bar1.jpg);
+  background-image: image-url("bar1.jpg");
 }
 
 .image2 {
-  background-image: url(bar.jpg);
+  background-image: image-url("bar.jpg");
 }
 
 .image3 {
-  background-image: url(bar2.jpg);
+  background-image: image-url("bar2.jpg");
 }
 
 #back {
