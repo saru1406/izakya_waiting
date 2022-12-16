@@ -9,16 +9,16 @@ $(function() {
 });
 
 //スライドショーを自動で再生
-$(document).ready(function () {
+$(function () {
   $("#theTarget").skippr({
-    transition : 'slide',
+    transition : 'fade',
     speed : 1000,
     easing : 'easeOutQuart',
-    navType : 'block',
+    navType : 'bubble',
     childrenElementType : 'div',
     arrows : true,
     autoPlay : true,
-    autoPlayDuration : 3000,
+    autoPlayDuration : 4000,
     keyboardOnAlways : true,
     hidePrevious : false
   });
