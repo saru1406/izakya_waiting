@@ -33,7 +33,8 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:name)
   end
-
+  
+  #ゲストユーザーがプロフィール編集できないように制限
   def ensure_guest_customer
     @customer = current_customer
     if @customer.name == "guestuser"

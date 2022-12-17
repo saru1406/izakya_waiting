@@ -4,6 +4,9 @@ class Public::StoresController < ApplicationController
   def index
     #掲載情報を公開のみ一覧に表示
     @store = Store.published
+    #ransack検索
+    @stores = @q.result(distinct: true).published
+    @tags = Tag.all
     #表示順分岐
     if params[:latest]
       @stores = @store.latest
@@ -13,12 +16,9 @@ class Public::StoresController < ApplicationController
       @stores = @store.review_amount
     elsif params[:review_star]
       @stores = @store.star_avg
-    else
-      #ransack検索
-      @stores = @q.result(distinct: true).published
     end
-    @tags = Tag.all
-    #タグ
+    
+    #複数タグを検索
     if params[:tag_ids]
       @stores = []
       params[:tag_ids].each do |key, value|

@@ -48,6 +48,10 @@ class Public::ReviewsController < ApplicationController
   def edit
     @store = Store.find(params[:store_id])
     @review = Review.find(params[:id])
+    #アクセス制限　投稿したユーザーのみ遷移可能
+    if @review.customer != current_customer
+      redirect_to stores_path
+    end
   end
 
   def destroy
