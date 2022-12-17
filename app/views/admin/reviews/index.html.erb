@@ -18,7 +18,12 @@
           <td><%= link_to review.customer.name, admin_customer_path(review.customer.id) %></td>
           <%= render 'public/reviews/review.star', review: review %>
           <td class="text-nowrap"><%= review.title %></td>
-          <td><%= safe_join(review.body.split("\n"),tag(:br))%></td>
+          <td>
+            <%= safe_join(review.body.split("\n"),tag(:br))%><br>
+            <% review.review_image.each do |get_review_image| %>
+              <%= image_tag get_review_image, size: "120x120" %>
+            <% end %>
+          </td>
           <td class="text-nowrap"><%= link_to "削除", admin_review_path(review.id), class: "btn btn-danger", method: :delete %></td>
         </tr>
       <% end %>
