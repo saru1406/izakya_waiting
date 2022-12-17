@@ -17,7 +17,7 @@ class Admin::StoresController < ApplicationController
     @store = Store.find(params[:id])
     if @store.update(store_params)
       flash[:notice] = "変更を保存しました。"
-      redirect_to admin_store_path
+      redirect_to admin_store_path(@store)
     else
       flash[:alret] = "項目を全て記入してください。"
       @tags = Tag.all

@@ -30,8 +30,13 @@
   <tr>
     <th class="bg-light">タグ</th>
     <td>
-      <% @store.tags.each do |tag| %>
-        ・<%= tag.name %>
+      <!--ジャンルがない場合"ジャンル登録されていません"の表示-->
+      <% if @store.tags.present? %>
+        <% @store.tags.each do |tag| %>
+          ・<%= tag.name %>
+        <% end %>
+      <% else %>
+        <p class="text-danger m-0">ジャンル登録されていません※編集からジャンル追加が可能です</p>
       <% end %>
     </td>
   </tr>

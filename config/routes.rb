@@ -28,7 +28,10 @@ scope module: :public do
   get 'search' => 'stores#search'
   resources :bookmarks, only: [:index]
   resources :review_comments, only: [:index]
-  resources :customers, only: [:show, :edit, :destroy, :update] do
+  get 'my_page'=>'customers#show'
+  get 'my_page/information/edit'=>'customers#edit'
+  patch 'my_page/information'=>'customers#update'
+  resources :customers, only: [:destroy] do
     resources :reviews, only: [:index]
   end
   resources :stores, only: [:index, :show] do

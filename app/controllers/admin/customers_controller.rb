@@ -16,7 +16,7 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:notice] = "変更を保存しました。"
-      redirect_to admin_customer_path
+      redirect_to admin_customer_path(@customer)
     else
       flash[:alret] = "項目を全て記入してください。"
       render :edit

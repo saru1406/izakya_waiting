@@ -8,7 +8,7 @@
         <tr>
           <td><h3>登録情報</h3></td>
           <% if @customer.name != "guestuser" %>
-            <td><%= link_to '編集する', edit_customer_path, class:"btn btn-success btn-block" %></td>
+            <td><%= link_to '編集する', my_page_information_edit_path, class:"btn btn-success btn-block" %></td>
           <% end %>
         </tr>
       </table>

@@ -10,7 +10,7 @@
           <div class="d-inline-block ">
             <p>ようこそ、<%= current_customer.name %>さん！</p>
           </div>
-          <%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-light ms-1" %>
+          <%= link_to "マイページ", my_page_path, class: "btn btn-outline-light ms-1" %>
           <%= link_to "居酒屋一覧", stores_path, class: "btn btn-outline-light ms-1" %>
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light ms-1" %>
         <% elsif store_signed_in?%>
