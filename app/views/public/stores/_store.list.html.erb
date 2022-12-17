@@ -24,7 +24,14 @@
         <div class="card-text">
           <p><%= store.name %></p>
           <p>￥<%= store.budget_min %>円~￥<%= store.budget_max %>円</p>
-          <p><%= store.seat_status %></p>
+          <!--空き状況により文字色を変化-->
+          <% if store.seat_status == "空きあり" %>
+            <p class="text-success">空きあり</p>
+          <% elsif store.seat_status == "空きわずか" %>
+            <p class="text-warning">空きわずか</p>
+          <% else %>
+            <p class="text-danger">空き無し</p>
+          <% end %>
           <p><%= store.business_hours %></p>
           <p><%= store.regular_holiday %></p>
           <p><%= store.smoke_status %></p>

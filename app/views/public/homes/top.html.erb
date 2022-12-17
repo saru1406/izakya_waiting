@@ -25,14 +25,21 @@
             <div class="card-body px-0">
               <div class="card-text text-center">
                 <p><%= store.name %></p>
-                <p><%= store.seat_status %></p>
+                <!--空き状況により文字色を変化-->
+                <% if store.seat_status == "空きあり" %>
+                  <p class="text-success">空きあり</p>
+                <% elsif store.seat_status == "空きわずか" %>
+                  <p class="text-warning">空きわずか</p>
+                <% else %>
+                  <p class="text-danger">空き無し</p>
+                <% end %>
               </div>
             </div>
           </div>
         <% end %>
       </div>
     <% end %>
-    <div class="d-flex align-items-end mb-4">
+    <div class="d-flex align-items-end">
       <%= link_to "すべての居酒屋を見る", stores_path %>
     </div>
   </div>
@@ -46,7 +53,10 @@
       </div>
       <div class="col-lg-8 py-3">
         <h4 class="col-lg-5 bg-light text-center">※居酒屋情報を登録の方</h4>
-        <li>居酒屋の店舗登録を行いたい方は<%= link_to "こちら",new_store_registration_path %>から新規登録を行ってください。</li>
+        <li>
+          居酒屋の店舗登録を行いたい方は<%= link_to "こちら",new_store_registration_path %>から新規登録を行ってください。<br>
+          <p class="text-danger">(※空席情報を随時リアルタイムの情報に更新してください)</p>
+        </li>
         <li>居酒屋のログインは<%= link_to "こちら",store_session_path %>からログインを行ってください。</li>
       </div>
     </div>
