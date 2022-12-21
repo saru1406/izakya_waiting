@@ -15,14 +15,14 @@ class Store < ApplicationRecord
          has_many :bookmarks, dependent: :destroy
 
          validates :name,presence:true
-         validates :telephone_number,presence:true
+         validates :telephone_number,numericality: {only_integer: true},presence:true
          validates :address,presence:true
-         validates :budget_min,presence:true
-         validates :budget_max,presence:true
+         validates :budget_min,numericality: {only_integer: true},presence:true
+         validates :budget_max,numericality: {only_integer: true},presence:true
          validates :regular_holiday,presence:true
          validates :business_hours,presence:true
          validates :smoke_status,presence:true
-         validates :service_charge,presence:true
+         validates :service_charge,numericality: {only_integer: true},presence:true
 
          #掲載情報の公開published 非公開unpublished
          scope :published, -> {where(is_published: true)}
