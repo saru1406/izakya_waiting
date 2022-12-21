@@ -16,7 +16,11 @@ class Public::ReviewCommentsController < ApplicationController
     @review = Review.find(params[:review_id])
     @review_comment = ReviewComment.find(params[:id])
     @review_comments = @review.review_comments.all
-    @review_comment.destroy
+    @customer = current_customer
+    #デベロッパーツールでid書き換えによる他のユーザーコメントを削除できない様制限
+    if @review_comment.customer_id == @customer.id
+      @review_comment.destroy
+    end
   end
 
   def index

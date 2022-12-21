@@ -55,10 +55,19 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
-    review = Review.find(params[:id])
-    review.destroy
-    store = Store.find(params[:store_id])
-    redirect_to store_path(store.id)
+    @review = Review.find(params[:id])
+    @customer = current_customer
+    @store = Store.find(params[:store_id])
+    #デベロッパーツールでid書き換えによる他のユーザーレビューを削除できない様
+    if @review.customer_id == @customer.id
+      @review.destroy
+      redirect_to store_path(@store)
+    else
+      @review_comments = @review.review_comments.all
+      @review_comment =ReviewComment.new
+      @tags = Tag.all
+      render :'show'
+    end
   end
 
   private
