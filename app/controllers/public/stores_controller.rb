@@ -15,7 +15,7 @@ class Public::StoresController < ApplicationController
     elsif params[:review_star]
       @stores = @stores.star_avg
     else
-      @stores = @q.result(distinct: true).published
+      @stores = @stores
     end
 
     #複数タグを検索
