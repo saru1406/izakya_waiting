@@ -6,10 +6,11 @@
     <h2 class="bg-light px-3 my-3 d-inline-block">居酒屋一覧</h2>
     <p>
       並び替え
-      |<%= link_to '新着順', stores_path(latest: "true") %>
-      |<%= link_to '古い順', stores_path(old: "true") %>
-      |<%= link_to 'レビュー数順', stores_path(review_count: "true") %>
-      |<%= link_to '評価が高い順', stores_path(review_star: "true") %>
+      <!--(q: params[:q].blank? ? nil : params[:q].permit!, latest: true) ransack検索結果があればparamsを引き継いで並び替えを行う-->
+      |<%= link_to '新着順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, latest: true) %>
+      |<%= link_to '古い順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, old: "true") %>
+      |<%= link_to 'レビュー数順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, review_count: "true") %>
+      |<%= link_to '評価が高い順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, review_star: "true") %>
     </p>
     <!--検索にヒットしない場合"検索にヒットしませんでした"の表示-->
     <% if @stores.present? %>

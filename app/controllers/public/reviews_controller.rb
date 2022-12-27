@@ -58,7 +58,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @customer = current_customer
     @store = Store.find(params[:store_id])
-    #デベロッパーツールでid書き換えによる他のユーザーレビューを削除できない様
+    #デベロッパーツールでid書き換えによる他のユーザーレビューを削除できない様制限
     if @review.customer_id == @customer.id
       @review.destroy
       redirect_to store_path(@store)

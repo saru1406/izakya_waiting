@@ -9,15 +9,17 @@ class Public::StoresController < ApplicationController
     @tags = Tag.all
     #表示順分岐
     if params[:latest]
-      @stores = @store.latest
+      @stores = @stores.latest
     elsif params[:old]
-      @stores = @store.old
+      @stores = @stores.old
     elsif params[:review_count]
-      @stores = @store.review_amount
+      @stores = @stores.review_amount
     elsif params[:review_star]
-      @stores = @store.star_avg
+      @stores = @stores.star_avg
+    else
+      @stores = @q.result(distinct: true).published
     end
-    
+
     #複数タグを検索
     if params[:tag_ids]
       @stores = []
