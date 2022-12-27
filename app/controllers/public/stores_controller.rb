@@ -2,9 +2,7 @@ class Public::StoresController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    #掲載情報を公開のみ一覧に表示
-    @store = Store.published
-    #ransack検索
+    #ransack検索,published<=掲載情報を公開のみ一覧に表示
     @stores = @q.result(distinct: true).published
     @tags = Tag.all
     #表示順分岐
