@@ -23,9 +23,7 @@ devise_scope :customer do
   end
 
 root to: 'public/homes#top'
-
 scope module: :public do
-  get 'search' => 'stores#search'
   resources :bookmarks, only: [:index]
   resources :review_comments, only: [:index]
   get 'my_page'=>'customers#show'

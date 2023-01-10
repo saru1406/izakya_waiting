@@ -1,16 +1,11 @@
 <div class="sticky-top p-4 bg-light border border-dark overflow-auto mt-4">
   <h5 class="bg-light px-3 border border-dark my-1 d-inline-block">ジャンル検索</h5>
-  <%= form_tag({controller:"stores",action:"index"}, method: :get) do %>
-    <% @tags.each do |t| %>
-      <ul>
-        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
-      </ul>
-    <% end %>
-    <%= submit_tag '検索' %>
-  <% end %>
   <%= search_form_for @q do |f| %>
-    <h5 class="bg-light px-3 border border-dark mt-3 d-inline-block">絞り込み検索</h5>
     <ul>
+      <% @tags.each do |tag| %>
+        <li><%= f.check_box :tags_id_eq_any, { multiple: true, checked: tag[:checked], include_hidden: false }, tag[:id] %><%= tag.name %></li>
+      <% end %>
+      <h5 class="bg-light px-3 border border-dark mt-3 d-inline-block">絞り込み検索</h5>
       <li class="pb-3">
         <p>禁煙・喫煙</p>
         <%= f.select(:smoke_status_eq, options_for_select([["禁煙"],["喫煙"]]), include_blank: "選択") %>

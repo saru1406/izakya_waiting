@@ -8,19 +8,15 @@
       並び替え
       <!--(q: params[:q].blank? ? nil : params[:q].permit!, latest: true) ransack検索結果があればparamsを引き継いで並び替えを行う-->
       |<%= link_to '新着順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, latest: true) %>
-      |<%= link_to '古い順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, old: "true") %>
-      |<%= link_to 'レビュー数順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, review_count: "true") %>
-      |<%= link_to '評価が高い順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, review_star: "true") %>
+      |<%= link_to '古い順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, old: true) %>
+      |<%= link_to 'レビュー数順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, review_count: true) %>
+      |<%= link_to '評価が高い順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, review_star: true) %>
     </p>
-    <!--検索にヒットしない場合"検索にヒットしませんでした"の表示-->
-    <% if @stores.present? %>
+
       <% @stores.each do |store| %>
         <%= link_to store_path(store.id), class: "text-decoration-none" do %>
           <%= render 'public/stores/store.list', store: store %>
         <% end %>
       <% end %>
-    <% else %>
-      <h3 class="text-center">検索にヒットしませんでした</h3>
-    <% end %>
   </div>
 </div>

@@ -32,7 +32,7 @@ class Store < ApplicationRecord
          scope :latest, -> {order(created_at: :desc)}
          scope :old, -> {order(created_at: :asc)}
          scope :star_avg, -> {eager_load(:reviews).group("stores.id").order("avg(reviews.star) desc")}
-         scope :review_amount, -> {eager_load(:reviews).group("stores.id").order("count(store_id) desc")}
+         scope :review_amount, -> {eager_load(:reviews).group("stores.id").order("count(reviews.store_id) desc")}
 
          #addressから自動で緯度経度を代入
          geocoded_by :address
