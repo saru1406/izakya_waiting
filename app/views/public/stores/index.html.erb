@@ -6,7 +6,7 @@
     <h2 class="bg-light px-3 my-3 d-inline-block">居酒屋一覧</h2>
     <p>
       並び替え
-      <!--(q: params[:q].blank? ? nil : params[:q].permit!, latest: true) ransack検索結果があればparamsを引き継いで並び替えを行う-->
+      <!--(q: params[:q].blank? ? nil : params[:q].permit!, latest: true) ransack検索結果があればparamsを引き継いで並び替えを行う 三項演算子-->
       |<%= link_to '新着順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, latest: true) %>
       |<%= link_to '古い順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, old: true) %>
       |<%= link_to 'レビュー数順', stores_path(q: params[:q].blank? ? nil : params[:q].permit!, review_count: true) %>

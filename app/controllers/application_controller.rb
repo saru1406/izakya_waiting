@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search
-    #絞り込み機能　空席情報、禁煙・喫煙、予算
+    #ジャンル検索 絞り込み機能　空席情報、禁煙・喫煙、予算
     @q = Store.ransack(params[:q])
   end
 end
